@@ -1,0 +1,78 @@
+/** globals **/
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+}
+
+/** skeleton **/
+body{
+    width: 100%;
+    float: left;
+}
+
+.left, .right{
+    float: left;
+    padding: 15px 10px;
+    background-color: #f5f5f5;
+    min-height: 100vh;
+}
+
+.left{
+    width: 20%;
+    border-right: 1px solid #DEDEDE;
+}
+
+.right{
+    width: 80%;
+    background-color: #b2c1c3;
+}
+
+.features, .samples{
+    float: left;
+    width: 100%;
+    background-color: white;
+    min-height: 150px;
+    margin-bottom: 15px;
+}
+
+.plot_opts, .visual_holder{
+    margin-bottom: 15px;
+    width: 100%;
+    padding: 15px;
+}
+
+.plot_opts{
+    background-color: white;
+    min-height: 150px;
+}
+
+.visual_holder{
+    min-height:450px;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+/** elements **/
+
+.titlebar{
+    padding: 5px 15px;
+    background-color: #484848;
+    color: #ffff;
+}
+
+/** Sample box, features box **/
+.samples li, .features li{
+    padding: 5px 15px 0px 15px;
+}
+
+.samples li:hover, .features li:hover{
+    background: #e6e6e6;
+}
+
+.samples li a, .features li a {
+    color: black;
+    text-decoration: none;
+}

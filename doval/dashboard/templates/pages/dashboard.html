@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="left">
+        <div class="features">
+            <div class="titlebar">
+                Features
+            </div>
+            <div class="content">
+                <ul>
+                    <li><a href="#">Feature 1</a></li>
+                    <li><a href="#">Feature 2</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="samples">
+            <div class="titlebar">
+                Samples
+            </div>
+            <div class="content">
+                <ul>
+                    <li><a href="#">Sample 1</a></li>
+                    <li><a href="#">Sample 2</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="right">
+        <div class="plot_opts">
+
+        </div>
+        <div class="visual_holder">
+            {% if not file %}
+                dir: {{dir}}
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit">Upload</button>
+                </form>
+            {% endif %}
+        </div>
+    </div>
+
+</body>
+</html>
