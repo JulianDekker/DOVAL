@@ -1,25 +1,38 @@
 import os
 from django.shortcuts import render, render_to_response, redirect
-from bokeh.resources import CDN
-from bokeh.plotting import Figure, output_file, show
-from bokeh.embed import components
-from bokeh.resources import INLINE
+from django.views.decorators.csrf import ensure_csrf_cookie
+from django.core.files.storage import FileSystemStorage
 from django.conf import settings
-from .forms import DataUploadForm
+import pandas as pd
+from bokeh.io import output_file, show
+from bokeh.layouts import widgetbox
+from bokeh.models import ColumnDataSource
+from bokeh.models.widgets import DataTable, DateFormatter, TableColumn
 
 
-# Create your views here.
-def homepage(request):
+params = {}
+# Renders the dashboard of the application
+@ensure_csrf_cookie
+def homepage(request, file=None):
     if request.method == 'POST':
-        form = DataUploadForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect('home')
-    else:
-        form = DataUploadForm()
+        file = upload(request)
+    if file is not None:
+        params['filename'] = file.name
+        pandasInAction(file.name)
+    return render(request, 'pages/dashboard.html', params)
 
-    filefolder = settings.BASE_DIR+'/files/'
 
-    #df = pd.read_csv(filefolder+'GSE51403_expression_matrix_full.txt')
+# Uploads the file in the request
+def upload(request):
+    file = request.FILES['document']
+    fs = FileSystemStorage()
+    fs.save(file.name, file)
+    return file
 
-    return render_to_response('pages/dashboard.html', {'form': form})
+
+# Extracts basic information from a file
+def pandasInAction(filename):
+    df = pd.read_csv(settings.MEDIA_ROOT + '/' + filename)
+    #params['shortfile'] = df.head(5)+df.tail(5)
+    params['datadescription'] = df.describe()
+    print(df.describe(include='all'))

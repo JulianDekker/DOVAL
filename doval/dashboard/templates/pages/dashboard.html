@@ -2,8 +2,10 @@
 {% load static %}
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DOVAL</title>
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
@@ -14,8 +16,13 @@
             </div>
             <div class="content">
                 <ul>
-                    <li><a href="#">Feature 1</a></li>
-                    <li><a href="#">Feature 2</a></li>
+                    {% if filename %}
+                        {% for feature in features %}
+                        <li><a href="#">{{feature}}</a></li>
+                        {% endfor %}
+                    {% else %}
+                    <li><a>No file selected</a></li>
+                    {% endif %}
                 </ul>
             </div>
         </div>
@@ -25,27 +32,35 @@
             </div>
             <div class="content">
                 <ul>
-                    <li><a href="#">Sample 1</a></li>
-                    <li><a href="#">Sample 2</a></li>
+                    {% if filename %}
+                        {% for feature in features %}
+                        <li><a href="#">{{feature}}</a></li>
+                        {% endfor %}
+                    {% else %}
+                    <li><a>No file selected</a></li>
+                    {% endif %}
                 </ul>
             </div>
         </div>
     </div>
     <div class="right">
         <div class="plot_opts">
-
+            {{filename}}
         </div>
         <div class="visual_holder">
-            {% if not file %}
-                dir: {{dir}}
-                <form method="post" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    {{ form.as_p }}
-                    <button type="submit">Upload</button>
-                </form>
-            {% endif %}
+        {% if filename %}
+            {{shortfile | safe }}
+            {{datadescription | safe }}
+        {% else %}
+            <form method="post" action="." enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="file" name="document">
+                <button type="submit">upload file</button>
+            </form>
+        {% endif %}
         </div>
     </div>
-
+    <script src="{% static 'js/jquery-3.1.1.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
 </body>
 </html>
