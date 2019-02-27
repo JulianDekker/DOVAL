@@ -48,19 +48,24 @@
             {{filename}}
         </div>
         <div class="visual_holder">
-        {% if filename %}
+            {% block visual %}
+            {% endblock %}
+        <!--{% if filename %}
             {{shortfile | safe }}
-            {{datadescription | safe }}
+            <span>{{ datadescription | safe }}</span>
         {% else %}
-            <form method="post" action="." enctype="multipart/form-data">
+            <form method="post" action="/uploadsuccess" enctype="multipart/form-data" class="dropzone">
                 {% csrf_token %}
                 <input type="file" name="document">
                 <button type="submit">upload file</button>
             </form>
-        {% endif %}
+        {% endif %}-->
         </div>
     </div>
-    <script src="{% static 'js/jquery-3.1.1.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <!--script src="{% static 'js/dropzone.js' %}"></script-->
+    <script src="{% static 'js/custom.js' %}"></script>
+    {% block javascript %}
+    {% endblock %}
 </body>
 </html>

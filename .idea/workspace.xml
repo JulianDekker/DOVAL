@@ -2,16 +2,78 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c0602058-9340-4cf1-92bb-f308dd6d89b0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doval/dashboard/static/js/custom.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doval/files/files.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doval/dashboard/migrations/0001_initial.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doval/dashboard/static/js/drag-and-drop-upload.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doval/dashboard/static/js/dropzone.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doval/dashboard/static/js/jquery-3.1.1.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doval/dashboard/static/js/jquery-file-upload/jquery.fileupload.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doval/dashboard/static/js/jquery-file-upload/jquery.iframe-transport.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doval/dashboard/static/js/jquery-file-upload/vendor/jquery.ui.widget.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doval/dashboard/templates/pages/localupload/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doval/files/files/GSE51403_design_matrix_full_depth.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doval/files/files/GSE51403_design_matrix_full_depth_5LDsQZe.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doval/files/files/GSE51403_design_matrix_full_depth_JKD3k48.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doval/files/files/GSE51403_design_matrix_full_depth_JKD3k48_6fkA0I7.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doval/files/files/GSE51403_design_matrix_full_depth_JKD3k48_9qiMqPa.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doval/files/files/GSE51403_design_matrix_full_depth_JKD3k48_9qiMqPa_OZSv7pO.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doval/files/files/GSE51403_design_matrix_full_depth_JKS30xJ.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doval/files/files/GSE51403_design_matrix_full_depth_JKS30xJ_WRUfVyl.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doval/files/files/GSE51403_design_matrix_full_depth_JKS30xJ_WRUfVyl_mYIiwMm.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doval/files/files/GSE51403_design_matrix_full_depth_bb1M6h4.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doval/files/files/GSE51403_design_matrix_full_depth_g5Wrgix.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doval/files/files/GSE51403_design_matrix_full_depth_g5Wrgix_bjw5M8K.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doval/files/files/GSE51403_design_matrix_full_depth_gmvQPdd.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doval/files/files/GSE51403_design_matrix_full_depth_gmvQPdd_YnQ7EVA.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doval/files/files/GSE51403_design_matrix_full_depth_gmvQPdd_vGUhisK.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doval/files/files/GSE51403_design_matrix_full_depth_gvsb8Of.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doval/files/files/GSE51403_expression_matrix_full.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doval/files/files/GSE51403_expression_matrix_full.txt_changes.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doval/files/files/GSE51403_expression_matrix_full.txt_changes_4qQWuCe.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doval/files/files/GSE51403_expression_matrix_full.txt_changes_5pX3TMG.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doval/files/files/GSE51403_expression_matrix_full.txt_changes_5pX3TMG_weEwChn.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doval/files/files/GSE51403_expression_matrix_full.txt_changes_NNAOH2P.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doval/files/files/GSE51403_expression_matrix_full_AwLAlmy.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doval/files/files/GSE51403_expression_matrix_full_DqdwVPN.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doval/files/files/GSE51403_expression_matrix_full_DvzNB6j.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doval/files/files/GSE51403_expression_matrix_full_HdIv9ZK.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doval/files/files/GSE51403_expression_matrix_full_INE8cQ1.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doval/files/files/GSE51403_expression_matrix_full_N4qzSZR.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doval/files/files/GSE51403_expression_matrix_full_PUpShKA.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doval/files/files/GSE51403_expression_matrix_full_RQg8ChR.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doval/files/files/GSE51403_expression_matrix_full_Y2wH3JU.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doval/files/files/GSE51403_expression_matrix_full_ZYoh85T.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doval/files/files/GSE51403_expression_matrix_full_bSPtdOT.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doval/files/files/GSE51403_expression_matrix_full_diVzRDf.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doval/files/files/GSE51403_expression_matrix_full_p6eSU7A.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doval/files/files/Holoviews.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doval/files/files/Holoviews_Cle2aDa.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doval/files/files/Holoviews_QkmAXZu.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doval/files/files/Holoviews_SixRQt2.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doval/files/files/Holoviews_TY0MIyV.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doval/files/files/Holoviews_jkpIOBS.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doval/files/files/Holoviews_k4BwWnm.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doval/files/files/Holoviews_ofa3VZJ.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doval/files/files/Holoviews_qFBg4ji.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doval/files/files/gridded_graphs.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doval/files/files/live_data.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doval/files/files/live_data_qH4IVxi.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doval/files/files/plotting_pitfalls.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doval/files/files/plotting_pitfalls_R4hUIxK.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doval/files/files/selection_points.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doval/files/files/selection_points_5ISNAlY.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doval/files/files/selection_points_iDZt9fd.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doval/dashboard/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/doval/dashboard/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doval/dashboard/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/doval/dashboard/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doval/dashboard/static/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/doval/dashboard/static/css/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doval/dashboard/static/js/custom.js" beforeDir="false" afterPath="$PROJECT_DIR$/doval/dashboard/static/js/custom.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doval/dashboard/templates/pages/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/doval/dashboard/templates/pages/dashboard.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doval/dashboard/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/doval/dashboard/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doval/dashboard/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/doval/dashboard/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doval/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/doval/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doval/doval/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/doval/doval/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doval/doval/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/doval/doval/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doval/files/files.gitignore" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -20,85 +82,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/doval/dashboard/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="612">
-              <caret line="36" column="45" selection-start-line="36" selection-start-column="45" selection-end-line="36" selection-end-column="45" />
-              <folding>
-                <element signature="e#0#9#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/doval/dashboard/static/js/custom.js">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/doval/dashboard/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="42" selection-start-line="5" selection-start-column="42" selection-end-line="5" selection-end-column="42" />
-              <folding>
-                <element signature="e#0#28#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/doval/doval/settings.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="595">
-              <caret line="47" column="32" lean-forward="true" selection-start-line="47" selection-start-column="32" selection-end-line="47" selection-end-column="32" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/doval/dashboard/templates/pages/dashboard.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="689">
-              <caret line="52" column="39" selection-start-line="52" selection-start-column="39" selection-end-line="52" selection-end-column="39" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/doval/dashboard/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/doval/dashboard/forms.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" selection-start-line="8" selection-end-line="8" />
-              <folding>
-                <element signature="e#0#24#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/doval/dashboard/static/css/styles.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="644">
-              <caret line="44" column="12" selection-start-line="44" selection-start-column="12" selection-end-line="44" selection-end-column="12" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -111,7 +95,13 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>base_dir</find>
+      <find>.</find>
+      <find>files</find>
+      <find>gallery</find>
     </findStrings>
+    <dirStrings>
+      <dir>C:\Users\Julian\Documents\visualiser\doval</dir>
+    </dirStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -123,24 +113,26 @@
         <option value="$PROJECT_DIR$/doval/dashboard/pages/styles.css" />
         <option value="$PROJECT_DIR$/doval/dashboard/urks.py" />
         <option value="$PROJECT_DIR$/doval/dashboard/templates/pages/styles.css" />
-        <option value="$PROJECT_DIR$/doval/dashboard/static/css/styles.css" />
-        <option value="$PROJECT_DIR$/doval/dashboard/forms.py" />
-        <option value="$PROJECT_DIR$/doval/dashboard/models.py" />
-        <option value="$PROJECT_DIR$/doval/doval/urls.py" />
         <option value="$PROJECT_DIR$/doval/dashboard/templates/upload/data_upload/index.html" />
-        <option value="$PROJECT_DIR$/doval/dashboard/static/js/custom.js" />
-        <option value="$PROJECT_DIR$/doval/dashboard/urls.py" />
         <option value="$PROJECT_DIR$/doval/doval/settings.py" />
+        <option value="$PROJECT_DIR$/doval/dashboard/static/js/custom.js" />
         <option value="$PROJECT_DIR$/doval/dashboard/templates/pages/dashboard.html" />
+        <option value="$PROJECT_DIR$/doval/dashboard/models.py" />
+        <option value="$PROJECT_DIR$/doval/dashboard/forms.py" />
+        <option value="$PROJECT_DIR$/doval/dashboard/urls.py" />
+        <option value="$PROJECT_DIR$/doval/dashboard/static/css/styles.css" />
+        <option value="$PROJECT_DIR$/doval/dashboard/static/js/drag-and-drop-upload.js" />
+        <option value="$PROJECT_DIR$/doval/dashboard/templates/pages/localupload/index.html" />
         <option value="$PROJECT_DIR$/doval/dashboard/views.py" />
+        <option value="$PROJECT_DIR$/doval/doval/urls.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-1708" />
-    <option name="y" value="-23" />
-    <option name="width" value="1058" />
-    <option name="height" value="1167" />
+    <option name="x" value="-1928" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1176" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -148,6 +140,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -164,71 +157,23 @@
               <item name="visualiser" type="b2602c69:ProjectViewProjectNode" />
               <item name="visualiser" type="462c0819:PsiDirectoryNode" />
               <item name="doval" type="462c0819:PsiDirectoryNode" />
-              <item name="dashboard" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="visualiser" type="b2602c69:ProjectViewProjectNode" />
-              <item name="visualiser" type="462c0819:PsiDirectoryNode" />
-              <item name="doval" type="462c0819:PsiDirectoryNode" />
-              <item name="dashboard" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="visualiser" type="b2602c69:ProjectViewProjectNode" />
-              <item name="visualiser" type="462c0819:PsiDirectoryNode" />
-              <item name="doval" type="462c0819:PsiDirectoryNode" />
-              <item name="dashboard" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="visualiser" type="b2602c69:ProjectViewProjectNode" />
-              <item name="visualiser" type="462c0819:PsiDirectoryNode" />
-              <item name="doval" type="462c0819:PsiDirectoryNode" />
-              <item name="dashboard" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="visualiser" type="b2602c69:ProjectViewProjectNode" />
-              <item name="visualiser" type="462c0819:PsiDirectoryNode" />
-              <item name="doval" type="462c0819:PsiDirectoryNode" />
-              <item name="dashboard" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="visualiser" type="b2602c69:ProjectViewProjectNode" />
-              <item name="visualiser" type="462c0819:PsiDirectoryNode" />
-              <item name="doval" type="462c0819:PsiDirectoryNode" />
-              <item name="dashboard" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="visualiser" type="b2602c69:ProjectViewProjectNode" />
-              <item name="visualiser" type="462c0819:PsiDirectoryNode" />
-              <item name="doval" type="462c0819:PsiDirectoryNode" />
-              <item name="doval" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="visualiser" type="b2602c69:ProjectViewProjectNode" />
-              <item name="visualiser" type="462c0819:PsiDirectoryNode" />
-              <item name="doval" type="462c0819:PsiDirectoryNode" />
               <item name="files" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Python Scripts/bokeh_project" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Julian\Documents\visualiser\doval\dashboard\static\js" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Julian\Documents\visualiser\doval\dashboard\static\css" />
       <recent name="C:\Users\Julian\Documents\visualiser\doval\dashboard" />
@@ -285,7 +230,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-1928" y="-8" width="1936" height="1176" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.12328767" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -311,83 +255,134 @@
     <entry file="file://$PROJECT_DIR$/doval/doval/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/doval/doval/urls.py">
+    <entry file="file://$PROJECT_DIR$/doval/dashboard/templates/upload/data_upload/index.html" />
+    <entry file="file://$PROJECT_DIR$/visenv/bin/bokeh">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Python Scripts/bokeh_project/myvenv/Lib/site-packages/django/urls/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="36" selection-start-line="21" selection-start-column="36" selection-end-line="21" selection-end-column="36" />
+        <state>
           <folding>
-            <element signature="e#629#661#0" expanded="true" />
+            <element signature="e#0#198#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/doval/dashboard/templates/upload/data_upload/index.html">
+    <entry file="file://$PROJECT_DIR$/visenv/lib/python3.6/site-packages/bokeh/io/showing.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="8" lean-forward="true" selection-start-line="25" selection-start-column="8" selection-end-line="25" selection-end-column="8" />
-          <folding>
-            <element signature="n#style#0;n#input#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
+        <state relative-caret-position="-408" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/doval/dashboard/models.py">
+    <entry file="file://$PROJECT_DIR$/visenv/lib/python3.6/site-packages/bokeh/io/export.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+        <state relative-caret-position="-306" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/visenv/lib/python3.6/site-packages/bokeh/io/webdriver.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-561" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/visenv/lib/python3.6/site-packages/bokeh/io/util.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/visenv/lib/python3.6/site-packages/bokeh/__main__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-348" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/visenv/lib/python3.6/site-packages/bokeh/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="655">
+          <caret line="87" column="56" lean-forward="true" selection-start-line="87" selection-start-column="56" selection-end-line="87" selection-end-column="56" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/doval/doval/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="47" column="32" lean-forward="true" selection-start-line="47" selection-start-column="32" selection-end-line="47" selection-end-column="32" />
+        <state relative-caret-position="629">
+          <caret line="37" column="34" selection-start-line="37" selection-start-column="34" selection-end-line="37" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/doval/dashboard/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="24" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/doval/dashboard/static/css/styles.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="644">
-          <caret line="44" column="12" selection-start-line="44" selection-start-column="12" selection-end-line="44" selection-end-column="12" />
+        <state relative-caret-position="493">
+          <caret line="29" column="14" selection-start-line="29" selection-start-column="14" selection-end-line="29" selection-end-column="14" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/doval/dashboard/forms.py">
+    <entry file="file://$PROJECT_DIR$/doval/dashboard/templates/pages/dashboard.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" selection-start-line="8" selection-end-line="8" />
-          <folding>
-            <element signature="e#0#24#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="508">
+          <caret line="37" column="36" selection-start-line="37" selection-start-column="36" selection-end-line="37" selection-end-column="36" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/doval/dashboard/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="42" selection-start-line="5" selection-start-column="42" selection-end-line="5" selection-end-column="42" />
+        <state relative-caret-position="119">
+          <caret line="7" column="1" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/doval/dashboard/static/js/custom.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/doval/dashboard/templates/pages/dashboard.html">
+    <entry file="file://$PROJECT_DIR$/doval/dashboard/forms.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="689">
-          <caret line="52" column="39" selection-start-line="52" selection-start-column="39" selection-end-line="52" selection-end-column="39" />
+        <state relative-caret-position="85">
+          <caret line="5" column="15" selection-start-line="5" selection-start-column="15" selection-end-line="5" selection-end-column="15" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/doval/dashboard/static/js/custom.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="8" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/doval/dashboard/static/js/drag-and-drop-upload.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="30" selection-start-line="8" selection-start-column="30" selection-end-line="8" selection-end-column="30" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/doval/dashboard/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="36" column="45" selection-start-line="36" selection-start-column="45" selection-end-line="36" selection-end-column="45" />
+        <state relative-caret-position="281">
+          <caret line="38" column="105" lean-forward="true" selection-start-line="38" selection-start-column="105" selection-end-line="38" selection-end-column="105" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/doval/dashboard/templates/pages/localupload/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="24" lean-forward="true" selection-start-line="16" selection-start-column="24" selection-end-line="16" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/doval/doval/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
+          <folding>
+            <element signature="e#629#661#0" expanded="true" />
           </folding>
         </state>
       </provider>

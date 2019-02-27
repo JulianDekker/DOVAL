@@ -1,7 +1,8 @@
 from django.db import models
 
 
-class DataUploadModel(models.Model):
-    data = models.FileField(upload_to='data/')
+class file(models.Model):
+    title = models.CharField(max_length=255, blank=True)
+    file = models.FileField(upload_to='files/')
     uploaded_at = models.DateTimeField(auto_now_add=True)
 

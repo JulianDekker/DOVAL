@@ -1,0 +1,17 @@
+Local upload -->								file export
+Myfair       -->  -->	data reciever --> data processing --> data sender --> 	myFAIR
+JUNIPER	     -->								JUNIPER
+
+data reciever
+from_local
+from_myfair
+from_juniper
+
+data processing
+Juniper PandasDataFrame Wrapper (can use this methods)
+
+data_sender
+to_local
+to_myFAIR
+to_juniper
+
