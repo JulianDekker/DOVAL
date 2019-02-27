@@ -35,6 +35,7 @@ class DragAndDropUploadView(View):
     def get(self, request):
         datalist.clear()
         form = FileForm()
+        clear_database()
         filelist = file.objects.all()
         return render(self.request, 'pages/localupload/index.html', {'uploadform': form, 'filelist': filelist})
 
@@ -68,8 +69,9 @@ def pandasInAction(filename):
     print(df.describe(include='all'))
 
 def clear_database():
-    for files in file.objects.all():
-        if not os.path.isfile(files.path):
-            file.file.delete()
-            file.delete()
+    for dele in file.objects.all():
+        if not os.path.isfile(settings.MEDIA_ROOT[0:-6] + dele.file.url):
+            dele.file.delete()
+            dele.delete()
+    print('cleared db from non-existing files')
     return

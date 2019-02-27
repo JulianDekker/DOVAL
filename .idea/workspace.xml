@@ -2,78 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c0602058-9340-4cf1-92bb-f308dd6d89b0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/doval/dashboard/migrations/0001_initial.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doval/dashboard/static/js/drag-and-drop-upload.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doval/dashboard/static/js/dropzone.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doval/dashboard/static/js/jquery-3.1.1.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doval/dashboard/static/js/jquery-file-upload/jquery.fileupload.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doval/dashboard/static/js/jquery-file-upload/jquery.iframe-transport.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doval/dashboard/static/js/jquery-file-upload/vendor/jquery.ui.widget.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doval/dashboard/templates/pages/localupload/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doval/files/files/GSE51403_design_matrix_full_depth.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doval/files/files/GSE51403_design_matrix_full_depth_5LDsQZe.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doval/files/files/GSE51403_design_matrix_full_depth_JKD3k48.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doval/files/files/GSE51403_design_matrix_full_depth_JKD3k48_6fkA0I7.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doval/files/files/GSE51403_design_matrix_full_depth_JKD3k48_9qiMqPa.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doval/files/files/GSE51403_design_matrix_full_depth_JKD3k48_9qiMqPa_OZSv7pO.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doval/files/files/GSE51403_design_matrix_full_depth_JKS30xJ.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doval/files/files/GSE51403_design_matrix_full_depth_JKS30xJ_WRUfVyl.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doval/files/files/GSE51403_design_matrix_full_depth_JKS30xJ_WRUfVyl_mYIiwMm.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doval/files/files/GSE51403_design_matrix_full_depth_bb1M6h4.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doval/files/files/GSE51403_design_matrix_full_depth_g5Wrgix.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doval/files/files/GSE51403_design_matrix_full_depth_g5Wrgix_bjw5M8K.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doval/files/files/GSE51403_design_matrix_full_depth_gmvQPdd.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doval/files/files/GSE51403_design_matrix_full_depth_gmvQPdd_YnQ7EVA.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doval/files/files/GSE51403_design_matrix_full_depth_gmvQPdd_vGUhisK.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doval/files/files/GSE51403_design_matrix_full_depth_gvsb8Of.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doval/files/files/GSE51403_expression_matrix_full.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doval/files/files/GSE51403_expression_matrix_full.txt_changes.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doval/files/files/GSE51403_expression_matrix_full.txt_changes_4qQWuCe.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doval/files/files/GSE51403_expression_matrix_full.txt_changes_5pX3TMG.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doval/files/files/GSE51403_expression_matrix_full.txt_changes_5pX3TMG_weEwChn.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doval/files/files/GSE51403_expression_matrix_full.txt_changes_NNAOH2P.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doval/files/files/GSE51403_expression_matrix_full_AwLAlmy.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doval/files/files/GSE51403_expression_matrix_full_DqdwVPN.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doval/files/files/GSE51403_expression_matrix_full_DvzNB6j.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doval/files/files/GSE51403_expression_matrix_full_HdIv9ZK.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doval/files/files/GSE51403_expression_matrix_full_INE8cQ1.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doval/files/files/GSE51403_expression_matrix_full_N4qzSZR.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doval/files/files/GSE51403_expression_matrix_full_PUpShKA.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doval/files/files/GSE51403_expression_matrix_full_RQg8ChR.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doval/files/files/GSE51403_expression_matrix_full_Y2wH3JU.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doval/files/files/GSE51403_expression_matrix_full_ZYoh85T.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doval/files/files/GSE51403_expression_matrix_full_bSPtdOT.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doval/files/files/GSE51403_expression_matrix_full_diVzRDf.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doval/files/files/GSE51403_expression_matrix_full_p6eSU7A.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doval/files/files/Holoviews.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doval/files/files/Holoviews_Cle2aDa.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doval/files/files/Holoviews_QkmAXZu.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doval/files/files/Holoviews_SixRQt2.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doval/files/files/Holoviews_TY0MIyV.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doval/files/files/Holoviews_jkpIOBS.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doval/files/files/Holoviews_k4BwWnm.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doval/files/files/Holoviews_ofa3VZJ.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doval/files/files/Holoviews_qFBg4ji.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doval/files/files/gridded_graphs.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doval/files/files/live_data.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doval/files/files/live_data_qH4IVxi.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doval/files/files/plotting_pitfalls.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doval/files/files/plotting_pitfalls_R4hUIxK.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doval/files/files/selection_points.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doval/files/files/selection_points_5ISNAlY.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doval/files/files/selection_points_iDZt9fd.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doval/dashboard/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/doval/dashboard/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doval/dashboard/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/doval/dashboard/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doval/dashboard/static/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/doval/dashboard/static/css/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doval/dashboard/static/js/custom.js" beforeDir="false" afterPath="$PROJECT_DIR$/doval/dashboard/static/js/custom.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doval/dashboard/templates/pages/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/doval/dashboard/templates/pages/dashboard.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doval/dashboard/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/doval/dashboard/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doval/dashboard/templates/pages/localupload/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/doval/dashboard/templates/pages/localupload/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doval/dashboard/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/doval/dashboard/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doval/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/doval/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doval/doval/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/doval/doval/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doval/doval/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/doval/doval/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doval/files/files.gitignore" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -82,7 +13,26 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/doval/dashboard/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="850">
+              <caret line="73" column="30" lean-forward="true" selection-start-line="73" selection-start-column="30" selection-end-line="73" selection-end-column="30" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/doval/dashboard/templates/pages/localupload/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="544">
+              <caret line="32" column="14" selection-start-line="32" selection-start-column="14" selection-end-line="32" selection-end-column="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -122,9 +72,9 @@
         <option value="$PROJECT_DIR$/doval/dashboard/urls.py" />
         <option value="$PROJECT_DIR$/doval/dashboard/static/css/styles.css" />
         <option value="$PROJECT_DIR$/doval/dashboard/static/js/drag-and-drop-upload.js" />
+        <option value="$PROJECT_DIR$/doval/doval/urls.py" />
         <option value="$PROJECT_DIR$/doval/dashboard/templates/pages/localupload/index.html" />
         <option value="$PROJECT_DIR$/doval/dashboard/views.py" />
-        <option value="$PROJECT_DIR$/doval/doval/urls.py" />
       </list>
     </option>
   </component>
@@ -152,6 +102,51 @@
               <item name="visualiser" type="b2602c69:ProjectViewProjectNode" />
               <item name="visualiser" type="462c0819:PsiDirectoryNode" />
               <item name="doval" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="visualiser" type="b2602c69:ProjectViewProjectNode" />
+              <item name="visualiser" type="462c0819:PsiDirectoryNode" />
+              <item name="doval" type="462c0819:PsiDirectoryNode" />
+              <item name="dashboard" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="visualiser" type="b2602c69:ProjectViewProjectNode" />
+              <item name="visualiser" type="462c0819:PsiDirectoryNode" />
+              <item name="doval" type="462c0819:PsiDirectoryNode" />
+              <item name="dashboard" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="visualiser" type="b2602c69:ProjectViewProjectNode" />
+              <item name="visualiser" type="462c0819:PsiDirectoryNode" />
+              <item name="doval" type="462c0819:PsiDirectoryNode" />
+              <item name="dashboard" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="visualiser" type="b2602c69:ProjectViewProjectNode" />
+              <item name="visualiser" type="462c0819:PsiDirectoryNode" />
+              <item name="doval" type="462c0819:PsiDirectoryNode" />
+              <item name="dashboard" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="visualiser" type="b2602c69:ProjectViewProjectNode" />
+              <item name="visualiser" type="462c0819:PsiDirectoryNode" />
+              <item name="doval" type="462c0819:PsiDirectoryNode" />
+              <item name="dashboard" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="visualiser" type="b2602c69:ProjectViewProjectNode" />
+              <item name="visualiser" type="462c0819:PsiDirectoryNode" />
+              <item name="doval" type="462c0819:PsiDirectoryNode" />
+              <item name="dashboard" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
+              <item name="localupload" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="visualiser" type="b2602c69:ProjectViewProjectNode" />
@@ -230,12 +225,13 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-1928" y="-8" width="1936" height="1176" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.12328767" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32981783" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -360,23 +356,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/doval/dashboard/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="281">
-          <caret line="38" column="105" lean-forward="true" selection-start-line="38" selection-start-column="105" selection-end-line="38" selection-end-column="105" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/doval/dashboard/templates/pages/localupload/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="24" lean-forward="true" selection-start-line="16" selection-start-column="24" selection-end-line="16" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/doval/doval/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="476">
@@ -384,6 +363,20 @@
           <folding>
             <element signature="e#629#661#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/doval/dashboard/templates/pages/localupload/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="32" column="14" selection-start-line="32" selection-start-column="14" selection-end-line="32" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/doval/dashboard/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="850">
+          <caret line="73" column="30" lean-forward="true" selection-start-line="73" selection-start-column="30" selection-end-line="73" selection-end-column="30" />
         </state>
       </provider>
     </entry>

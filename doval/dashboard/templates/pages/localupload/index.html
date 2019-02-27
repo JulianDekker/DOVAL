@@ -27,4 +27,7 @@
              data-form-data='{"csrfmiddlewaretoken": "{{ csrf_token }}"}'>
     </div>
   </div>
+  {% for file in filelist %}
+    <div>{{file.file.name}}</div>
+  {% endfor %}
 {% endblock %}
