@@ -99,6 +99,7 @@ body{
     margin-left: auto;
     padding: 45px;
     margin-right: auto;
+    cursor: pointer;
 }
 
 .fileform{
