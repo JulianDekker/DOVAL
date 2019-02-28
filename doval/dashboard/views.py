@@ -18,6 +18,7 @@ from bokeh.models.widgets import DataTable, DateFormatter, TableColumn
 params = {}
 selectfile = {}
 
+
 class DragAndDropUploadView(View):
     '''
     Renders the dashboard and handles the drag and drop actions.
@@ -25,7 +26,6 @@ class DragAndDropUploadView(View):
     def get(self, request):
         form = FileForm()
         clear_database()
-        #datalist.clear()
         return render(self.request, 'pages/localupload/index.html', {'uploadform': form})
 
     def post(self, request):
@@ -45,10 +45,22 @@ class SelectedFileView(View):
     Displays the currently selected file and shows some basic information
     '''
     def get(self, request):
+        if not selectfile:
+            return redirect('/')
         return render(self.request, 'pages/visuals/table.html', selectfile)
 
     def post(self, request):
         pass
+
+
+def tohome(request):
+    if selectfile:
+        if os.path.isfile(settings.MEDIA_ROOT[0:-6] + selectfile['url']):
+            os.remove(settings.MEDIA_ROOT[0:-6] + selectfile['url'])
+        selectfile.clear()
+        return redirect('/')
+    else:
+        return redirect('/')
 
 
 def clear_database():
