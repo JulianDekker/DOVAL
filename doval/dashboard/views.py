@@ -51,19 +51,6 @@ class SelectedFileView(View):
         pass
 
 
-
-def pandasInAction(filename):
-    '''
-    Pandas handle not implemented
-    :param filename:
-    :return:
-    '''
-    df = pd.read_csv(settings.MEDIA_ROOT + '/' + filename)
-    #params['shortfile'] = df.head(5)+df.tail(5)
-    params['datadescription'] = df.describe()
-    print(df.describe(include='all'))
-
-
 def clear_database():
     '''
     Deletes all files that are not stored in /doval/files/files
@@ -73,35 +60,3 @@ def clear_database():
             dele.file.delete()
             dele.delete()
     print('cleared db from non-existing files')
-
-
-@ensure_csrf_cookie
-def homepage(request, file=None):
-    '''
-    Deprecated dashboard render
-    :param request:
-    :param file:
-    :return:
-    '''
-    print(request, request.method)
-    if request.method == 'POST':
-        file = upload(request)
-        if file is not None:
-            params['filename'] = file.name
-            pandasInAction(file.name)
-            print("After this it should render ... ", request)
-            return render(request, 'pages/dashboard.html', params)
-    return render(request, 'pages/dashboard.html')
-
-
-def upload(request):
-    '''
-    Deprecated upload handler
-    :param request:
-    :return:
-    '''
-    print(request.FILES)
-    file = request.FILES[list(request.FILES)[0]]
-    fs = FileSystemStorage()
-    fs.save(file.name, file)
-    return file
