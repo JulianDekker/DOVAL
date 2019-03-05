@@ -2,13 +2,33 @@
 
 {% load static %}
 
+{% block js-top %}
+{{ resource | safe }}
+{% endblock %}
+
 {% block javascript %}
+{{ script | safe }}
 {% endblock %}
 
 {% block visual %}
-  <div>
-      {{name}}<br>
-      {{url}}
-      <a href="/start" class="btn-upload">Back</a>
-  </div>
+  <!--<div class="layout">-->
+      {{ div | safe }}
+      <!--a href="/start" class="btn-upload">Back</a-->
+  <!--</div>-->
+{% endblock %}
+
+{% block features %}
+<ul>
+    {% for feature in features %}
+    <li><a href="{% url 'dashboard:selection' key=feature %}">{{feature}}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}
+
+{% block samples %}
+<ul>
+    {% for sample in samples %}
+    <li><a href="#">{{sample}}</a></li>
+    {% endfor %}
+</ul>
 {% endblock %}

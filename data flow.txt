@@ -15,3 +15,11 @@ to_local
 to_myFAIR
 to_juniper
 
+packaging ?
+
+visualisation first
+make powerpoint of plots
+
+
+upload data --> pandas reads in dataframe --> django send dataframe to doval api --> 
+doval api gets table element and web components --> django sends web componentns to template

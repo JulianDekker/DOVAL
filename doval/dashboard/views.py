@@ -1,23 +1,18 @@
 import os
 from django.shortcuts import render, render_to_response, redirect
-from django.views.decorators.csrf import ensure_csrf_cookie
-from django.core.files.storage import FileSystemStorage
 from django.conf import settings
 from django.http import JsonResponse
 from django.views import View
+from bokeh.layouts import layout
+import dovalapi
 
 from .forms import FileForm
 from .models import file
 import pandas as pd
-from bokeh.io import output_file, show
-from bokeh.layouts import widgetbox
-from bokeh.models import ColumnDataSource
-from bokeh.models.widgets import DataTable, DateFormatter, TableColumn
 
 
-params = {}
 selectfile = {}
-
+keys = []
 
 class DragAndDropUploadView(View):
     '''
@@ -33,7 +28,6 @@ class DragAndDropUploadView(View):
         if form.is_valid():
             file = form.save()
             data = {'is_valid': True, 'name': file.file.name, 'url': file.file.url}
-            #pandasInAction(file.file.name)
         else:
             data = {'is_valid': False}
         selectfile.update(data)
@@ -44,16 +38,39 @@ class SelectedFileView(View):
     '''
     Displays the currently selected file and shows some basic information
     '''
+
     def get(self, request):
         if not selectfile:
             return redirect('/')
-        return render(self.request, 'pages/visuals/table.html', selectfile)
+        vars = globals()
+        vars['keys'] = []
+        sep = dovalapi.utils.check_sep(settings.MEDIA_ROOT[0:-6] + selectfile['url'])
+        df = pd.read_csv(settings.MEDIA_ROOT[0:-6] + selectfile['url'], sep=sep)
+        br = dovalapi.BokehResources(dataframe=df)
+        table = br.get_table()
+        simpleexplorer = br.explore_data_vis(dataframe=df)
+        print(simpleexplorer)
+        script, div = br.components_web(layout(simpleexplorer, responsive='width_ar', sizing_mode='stretch_both'))
+        resource = br.bokeh_web_resources()
+        params = {'script': script, 'div': div, 'resource': resource, 'features': br.get_headers(),
+                  'samples': br.get_columns()}
+        return render(self.request, 'pages/visuals/table.html', params)
+
+    def updateview(self, key):
+        selected = selection(key)
+        return JsonResponse({'keys': selected})
 
     def post(self, request):
         pass
 
 
+
 def tohome(request):
+    '''
+    Redirects to homepage and deletes file from previous session from storage
+    :param request:
+    :return:
+    '''
     if selectfile:
         if os.path.isfile(settings.MEDIA_ROOT[0:-6] + selectfile['url']):
             os.remove(settings.MEDIA_ROOT[0:-6] + selectfile['url'])
@@ -61,6 +78,14 @@ def tohome(request):
         return redirect('/')
     else:
         return redirect('/')
+
+
+def selection(key):
+    if key not in keys:
+        keys.append(key)
+    else:
+        del keys[keys.index(key)]
+    return keys
 
 
 def clear_database():
