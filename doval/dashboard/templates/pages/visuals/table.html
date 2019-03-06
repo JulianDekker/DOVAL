@@ -12,7 +12,7 @@
 
 {% block visual %}
   <!--<div class="layout">-->
-      {{ div | safe }}
+      <h2 class="text-center mtop">Please select features to visualise by clicking on them.</h2>
       <!--a href="/start" class="btn-upload">Back</a-->
   <!--</div>-->
 {% endblock %}
@@ -20,7 +20,7 @@
 {% block features %}
 <ul>
     {% for feature in features %}
-    <li><a href="{% url 'dashboard:selection' key=feature %}">{{feature}}</a></li>
+    <li><a href="{% url 'dashboard:key_selection' key=feature %}">{{feature}}</a></li>
     {% endfor %}
 </ul>
 {% endblock %}
@@ -28,7 +28,7 @@
 {% block samples %}
 <ul>
     {% for sample in samples %}
-    <li><a href="#">{{sample}}</a></li>
+    <li><a href="{% url 'dashboard:samp_selection' sample=sample %}">{{sample}}</a></li>
     {% endfor %}
 </ul>
 {% endblock %}

@@ -23,3 +23,19 @@ make powerpoint of plots
 
 upload data --> pandas reads in dataframe --> django send dataframe to doval api --> 
 doval api gets table element and web components --> django sends web componentns to template
+
+class
+	Viral
+	Bacterial
+
+1d data visualisation aproach:
+	check datatypes from pandas df ->
+		-> string data or bool data: make tuple of header and string -> count occurences of each string in dataset -> create bar chart of number of occurences.
+		-> integer or float date: count unique values -> calculate amount of bins to group data into (datapoints /10), minimal 10. -> group all datapoints into bins -> display bins as bar chart.
+	options: bar chart
+
+2d data visualisation:
+	options: line plot, box and whiskers, scatter plot, bar, pie chart, venn?
+
+3d data visualisation:
+	options: heatmap, scatter with histogram, 3d scatter, stacked bar, multi-line, combinations?

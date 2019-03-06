@@ -13,6 +13,7 @@ import pandas as pd
 
 selectfile = {}
 keys = []
+samples = []
 
 class DragAndDropUploadView(View):
     '''
@@ -44,26 +45,54 @@ class SelectedFileView(View):
             return redirect('/')
         vars = globals()
         vars['keys'] = []
+        vars['samples'] = []
         sep = dovalapi.utils.check_sep(settings.MEDIA_ROOT[0:-6] + selectfile['url'])
         df = pd.read_csv(settings.MEDIA_ROOT[0:-6] + selectfile['url'], sep=sep)
         br = dovalapi.BokehResources(dataframe=df)
-        table = br.get_table()
-        simpleexplorer = br.explore_data_vis(dataframe=df)
-        print(simpleexplorer)
-        script, div = br.components_web(layout(simpleexplorer, responsive='width_ar', sizing_mode='stretch_both'))
+        #table = br.get_table()
+        #simpleexplorer = br.explore_data_vis(dataframe=df)
+        #script, div = br.components_web(layout(simpleexplorer, responsive='width_ar', sizing_mode='stretch_both'))
         resource = br.bokeh_web_resources()
-        params = {'script': script, 'div': div, 'resource': resource, 'features': br.get_headers(),
+        params = {'resource': resource, 'features': br.get_headers(),
                   'samples': br.get_columns()}
         return render(self.request, 'pages/visuals/table.html', params)
 
-    def updateview(self, key):
-        selected = selection(key)
-        return JsonResponse({'keys': selected})
+    def keyrequest(self, key):
+        print('keyreq')
+        if key is not None:
+            selected = key_select(key)
+            return updateview(selected=selected, sample=samples)
+
+    def samprequest(self, sample):
+        print('samplereq')
+        if sample is not None:
+            samp = samp_select(sample)
+            return updateview(selected=keys, sample=samp)
 
     def post(self, request):
         pass
 
 
+def updateview(selected=None, sample=None):
+    print(sample, selected)
+    if len(selected) > 0:
+        sep = dovalapi.utils.check_sep(settings.MEDIA_ROOT[0:-6] + selectfile['url'])
+        df = pd.read_csv(settings.MEDIA_ROOT[0:-6] + selectfile['url'], sep=sep)
+        br = dovalapi.BokehResources(dataframe=df)
+        if len(sample) > 0:
+            try:
+                sample = [int(s) for s in sample]
+            except:
+                print("Cannot convert index to integer")
+            finally:
+                df = df.set_index(df.columns[0]).loc[sample, :]
+                df = df.reset_index()
+        simpleexplorer = br.explore_data_vis(dataframe=df[selected])
+        print(simpleexplorer)
+        script, div = br.components_web(layout(simpleexplorer, responsive='width_ar', sizing_mode='stretch_both'))
+        return JsonResponse({'keys': selected, 'script': script, 'div': div})
+    else:
+        return JsonResponse({'keys': []})
 
 def tohome(request):
     '''
@@ -80,12 +109,22 @@ def tohome(request):
         return redirect('/')
 
 
-def selection(key):
+def key_select(key):
     if key not in keys:
         keys.append(key)
     else:
         del keys[keys.index(key)]
     return keys
+
+
+def samp_select(sample):
+    print('sample', sample)
+    if sample not in samples:
+        samples.append(sample)
+    else:
+        del samples[samples.index(sample)]
+    print('samples', samples)
+    return samples
 
 
 def clear_database():
