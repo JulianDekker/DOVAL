@@ -47,6 +47,7 @@ class SelectedFileView(View):
         vars['keys'] = []
         vars['samples'] = []
         sep = dovalapi.utils.check_sep(settings.MEDIA_ROOT[0:-6] + selectfile['url'])
+        print(sep)
         df = pd.read_csv(settings.MEDIA_ROOT[0:-6] + selectfile['url'], sep=sep)
         br = dovalapi.BokehResources(dataframe=df)
         #table = br.get_table()
@@ -74,9 +75,10 @@ class SelectedFileView(View):
 
 
 def updateview(selected=None, sample=None):
-    print(sample, selected)
+    #print(sample, selected)
     if len(selected) > 0:
         sep = dovalapi.utils.check_sep(settings.MEDIA_ROOT[0:-6] + selectfile['url'])
+        print(sep)
         df = pd.read_csv(settings.MEDIA_ROOT[0:-6] + selectfile['url'], sep=sep)
         br = dovalapi.BokehResources(dataframe=df)
         if len(sample) > 0:
@@ -87,9 +89,9 @@ def updateview(selected=None, sample=None):
             finally:
                 df = df.set_index(df.columns[0]).loc[sample, :]
                 df = df.reset_index()
-        simpleexplorer = br.explore_data_vis(dataframe=df[selected])
-        print(simpleexplorer)
-        script, div = br.components_web(layout(simpleexplorer, responsive='width_ar', sizing_mode='stretch_both'))
+        #simpleexplorer = br.explore_data_vis(dataframe=df[selected])
+        pivotboxplot = br.pivotboxplot(dataframe=df, features=selected)
+        script, div = br.components_web(layout(pivotboxplot, responsive='width_ar', sizing_mode='stretch_both'))
         return JsonResponse({'keys': selected, 'script': script, 'div': div})
     else:
         return JsonResponse({'keys': []})
@@ -110,10 +112,20 @@ def tohome(request):
 
 
 def key_select(key):
-    if key not in keys:
-        keys.append(key)
+    print('key select 1:', key, keys)
+    if key+'_cat' in keys:
+        del keys[keys.index(key+'_cat')]
     else:
-        del keys[keys.index(key)]
+        if key not in keys:
+            keys.append(key)
+        else:
+            del keys[keys.index(key)]
+    for curkey in keys:
+        print(curkey[-4:])
+        if curkey[-4:] == '_cat':
+            keys[keys.index(curkey)] = curkey[:-4]
+            print('deleted')
+    print('key select 2:', key, keys)
     return keys
 
 

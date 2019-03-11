@@ -58,10 +58,13 @@
             {% block visual %}
             {% endblock %}
         </div>
+        {% block below_vis %}
+        {% endblock %}
     </div>
     <script src="{% static 'js/jquery.min.js' %}"></script>
     <script src="{% static 'js/custom.js' %}"></script>
     {% block javascript %}
     {% endblock %}
+    <span class="scripttags"></span>
 </body>
 </html>

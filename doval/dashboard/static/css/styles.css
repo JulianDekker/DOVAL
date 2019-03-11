@@ -109,7 +109,7 @@ body{
 }
 
 .samples li:hover, .features li:hover{
-    background: #e6e6e6;
+    background: #d6d6d6;
 }
 
 .samples li a, .features li a {
@@ -122,6 +122,10 @@ body{
 
 .samples li a.active, .features li a.active{
     background: #e6e6e6;
+}
+
+.samples li a.active:hover, .features li a.active:hover{
+    background: #d6d6d6;
 }
 
 .dropzone {

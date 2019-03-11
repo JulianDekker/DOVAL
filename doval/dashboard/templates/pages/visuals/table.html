@@ -10,17 +10,26 @@
 {{ script | safe }}
 {% endblock %}
 
+
+{% block plot_opts %}
+<div class="btn-box">
+    <div class="btn-opt">1D</div>
+    <div class="btn-opt">2D</div>
+    <div class="btn-opt">3D</div>
+</div>
+{% endblock %}
+
 {% block visual %}
-  <!--<div class="layout">-->
       <h2 class="text-center mtop">Please select features to visualise by clicking on them.</h2>
-      <!--a href="/start" class="btn-upload">Back</a-->
-  <!--</div>-->
+{% endblock %}
+{% block below_vis %}
+    <a href="/start" class="btn-upload">Back</a>
 {% endblock %}
 
 {% block features %}
 <ul>
     {% for feature in features %}
-    <li><a href="{% url 'dashboard:key_selection' key=feature %}">{{feature}}</a></li>
+    <li><a href="#" value="{% url 'dashboard:key_selection' key=feature %}">{{feature}}</a></li>
     {% endfor %}
 </ul>
 {% endblock %}
@@ -28,7 +37,7 @@
 {% block samples %}
 <ul>
     {% for sample in samples %}
-    <li><a href="{% url 'dashboard:samp_selection' sample=sample %}">{{sample}}</a></li>
+    <li><a href="#" value="{% url 'dashboard:samp_selection' sample=sample %}">{{sample}}</a></li>
     {% endfor %}
 </ul>
 {% endblock %}
