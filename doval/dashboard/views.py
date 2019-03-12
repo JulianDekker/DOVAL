@@ -89,10 +89,10 @@ def updateview(selected=None, sample=None):
             finally:
                 df = df.set_index(df.columns[0]).loc[sample, :]
                 df = df.reset_index()
-        #simpleexplorer = br.explore_data_vis(dataframe=df[selected])
-        pivotboxplot = br.pivotboxplot(dataframe=df, features=selected)
-        script, div = br.components_web(layout(pivotboxplot, responsive='width_ar', sizing_mode='stretch_both'))
-        return JsonResponse({'keys': selected, 'script': script, 'div': div})
+        #graph = br.explore_data_vis(dataframe=df[selected])
+        graph, table = br.pivotboxplot(dataframe=df, features=selected, rettable=True)
+        script, div = br.components_web(layout(graph, responsive='width_ar', sizing_mode='stretch_both'))
+        return JsonResponse({'keys': selected, 'script': script, 'div': div, 'table': pd.DataFrame.to_html(table)})
     else:
         return JsonResponse({'keys': []})
 
