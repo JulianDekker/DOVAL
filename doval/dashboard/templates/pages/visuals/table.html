@@ -3,28 +3,42 @@
 {% load static %}
 
 {% block js-top %}
-{{ resource | safe }}
+<!--{{ resource | safe }}-->
+<link rel="stylesheet" href="{% static 'css/canvasXpress.css' %}">
+<link rel="stylesheet" href="{% static 'css/jquery.modal.min.css' %}">
+<script src="{% static 'js/canvasunminified.js' %}"></script>
+
 {% endblock %}
 
 {% block javascript %}
-{{ script | safe }}
+<script src="{% static 'js/jquery.modal.min.js' %}"></script>
+<!--{{ script | safe }}-->
 {% endblock %}
 
 
 {% block plot_opts %}
 <div class="btn-box">
-    <div class="btn-opt">1D</div>
-    <div class="btn-opt">2D</div>
-    <div class="btn-opt">3D</div>
+    <div class="btn-opt" type="Boxplot">Boxplot 1D</div>
+    <div class="btn-opt" type="Scatter">Scatter 2-3D</div>
+    <div class="btn-opt" type="Heatmap">Heatmap</div>
+    <div class="btn-opt" type="Line">Line</div>
+</div>
+<div class="funct-bar">
+    <a class="funct btn" href="#ex1" rel="modal:open">Annotate features</a>
 </div>
 {% endblock %}
 
 {% block visual %}
     <div class="visual-table">
-        test
+
     </div>
     <div class="visual-graph">
-      <h2 class="text-center mtop">Please select features to visualise by clicking on them.</h2>
+        <div class="canvascont">
+            <canvas id="canvas" aspectRatio='1:2' responsive='true'>    <!--canvas id='bar1' width='290' height='540' ></canvas-->
+
+                <h2 class="text-center mtop">Please select features to visualise by clicking on them.</h2>
+            </canvas>
+        </div>
     </div>
 {% endblock %}
 {% block below_vis %}
@@ -34,7 +48,7 @@
 {% block features %}
 <ul>
     {% for feature in features %}
-    <li><a href="#" value="{% url 'dashboard:key_selection' key=feature %}">{{feature}}</a></li>
+    <li><a href="#" value="{{ feature }}">{{feature}}<span class="inline-marker"></span></a></li>
     {% endfor %}
 </ul>
 {% endblock %}
@@ -45,4 +59,14 @@
     <li><a href="#" value="{% url 'dashboard:samp_selection' sample=sample %}">{{sample}}</a></li>
     {% endfor %}
 </ul>
+{% endblock %}
+
+{% block modal %}
+<div id="ex1" class="modal">
+  <p>Add information about your features below.</p>
+  <div class="annotate-fields">
+
+  </div>
+  <a href="#" class="save-anot btn" rel="modal:close">Save and close</a><a href="#" rel="modal:close" class="btn">Back</a>
+</div>
 {% endblock %}

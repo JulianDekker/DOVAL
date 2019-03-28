@@ -3,7 +3,8 @@ from django.shortcuts import render, render_to_response, redirect
 from django.conf import settings
 from django.http import JsonResponse
 from django.views import View
-from bokeh.layouts import layout
+import json
+#from bokeh.layouts import layout
 import dovalapi
 
 from .forms import FileForm
@@ -47,18 +48,14 @@ class SelectedFileView(View):
         vars['keys'] = []
         vars['samples'] = []
         sep = dovalapi.utils.check_sep(settings.MEDIA_ROOT[0:-6] + selectfile['url'])
-        print(sep)
         df = pd.read_csv(settings.MEDIA_ROOT[0:-6] + selectfile['url'], sep=sep)
         br = dovalapi.BokehResources(dataframe=df)
-        #table = br.get_table()
-        #simpleexplorer = br.explore_data_vis(dataframe=df)
-        #script, div = br.components_web(layout(simpleexplorer, responsive='width_ar', sizing_mode='stretch_both'))
-        resource = br.bokeh_web_resources()
-        params = {'resource': resource, 'features': br.get_headers(),
+        params = {'features': br.get_headers(),
                   'samples': br.get_columns()}
         return render(self.request, 'pages/visuals/table.html', params)
 
     def keyrequest(self, key):
+        print(key, list)
         print('keyreq')
         if key is not None:
             selected = key_select(key)
@@ -75,26 +72,18 @@ class SelectedFileView(View):
 
 
 def updateview(selected=None, sample=None):
-    #print(sample, selected)
-    if len(selected) > 0:
-        sep = dovalapi.utils.check_sep(settings.MEDIA_ROOT[0:-6] + selectfile['url'])
-        print(sep)
-        df = pd.read_csv(settings.MEDIA_ROOT[0:-6] + selectfile['url'], sep=sep)
-        br = dovalapi.BokehResources(dataframe=df)
-        if len(sample) > 0:
-            try:
-                sample = [int(s) for s in sample]
-            except:
-                print("Cannot convert index to integer")
-            finally:
-                df = df.set_index(df.columns[0]).loc[sample, :]
-                df = df.reset_index()
-        #graph = br.explore_data_vis(dataframe=df[selected])
-        graph, table = br.pivotboxplot(dataframe=df, features=selected, rettable=True)
-        script, div = br.components_web(layout(graph, responsive='width_ar', sizing_mode='stretch_both'))
-        return JsonResponse({'keys': selected, 'script': script, 'div': div, 'table': pd.DataFrame.to_html(table)})
-    else:
-        return JsonResponse({'keys': []})
+    sep = dovalapi.utils.check_sep(settings.MEDIA_ROOT[0:-6] + selectfile['url'])
+    df = pd.read_csv(settings.MEDIA_ROOT[0:-6] + selectfile['url'], sep=sep)
+    if len(sample) > 0:
+        try:
+            sample = [int(s) for s in sample]
+        except:
+            print("Cannot convert index to integer")
+        finally:
+            df = df.set_index(df.columns[0]).loc[sample, :]
+            df = df.reset_index()
+    print('features in: ', selected)
+    return JsonResponse({'keys': selected, 'df': df.to_json(orient='split')})
 
 def tohome(request):
     '''
@@ -111,8 +100,12 @@ def tohome(request):
         return redirect('/')
 
 
+def multiupdate(request):
+    list = json.loads(request.GET['values'])
+    return updateview(selected=list, sample=samples)
+
+
 def key_select(key):
-    print('key select 1:', key, keys)
     if key+'_cat' in keys:
         del keys[keys.index(key+'_cat')]
     else:
@@ -121,22 +114,19 @@ def key_select(key):
         else:
             del keys[keys.index(key)]
     for curkey in keys:
-        print(curkey[-4:])
         if curkey[-4:] == '_cat':
             keys[keys.index(curkey)] = curkey[:-4]
-            print('deleted')
-    print('key select 2:', key, keys)
     return keys
 
 
 def samp_select(sample):
-    print('sample', sample)
     if sample not in samples:
         samples.append(sample)
     else:
         del samples[samples.index(sample)]
-    print('samples', samples)
     return samples
+
+
 
 
 def clear_database():

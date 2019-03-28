@@ -15,5 +15,6 @@ urlpatterns = [
     url(r'^annotate$', views.SelectedFileView.as_view(), name='annotate'),
     url(r'^annotate/k(?P<key>.+)$', views.SelectedFileView.keyrequest, name='key_selection'),
     url(r'^annotate/s(?P<sample>.+)$', views.SelectedFileView.samprequest, name='samp_selection'),
+    url(r'^annotate/update', views.multiupdate, name='multiupdate'),
     url(r'^start$', views.tohome, name='back')
 ]

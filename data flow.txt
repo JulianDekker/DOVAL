@@ -39,3 +39,28 @@ class
 
 3d data visualisation:
 	options: heatmap, scatter with histogram, 3d scatter, stacked bar, multi-line, combinations?
+
+Hooking the notebook up to diferent sources:
+	can be used by a single user inside of jupyter
+	can be used by multi users inside of myfair
+	can be used by multiple users inside of galaxy
+
+
+doval linked to seek:
+
+- take id from seek with dataset
+- export id to seek with dataset (seek api)
+
+make powerpoint with test cases.
+	- show data formatting
+	- show data transformation
+	- show data filter
+
+for user management: 
+	create new session for id, no id is blank page
+
+work on exporter functionality
+
+gave feedback on canvasxpress github
+
+

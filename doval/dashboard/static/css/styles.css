@@ -26,7 +26,9 @@
 ::-webkit-scrollbar-track {
     background-color: #f5f5f5;
 }
-
+.blocker{
+    background-color: rgba(0,0,0,0.25);
+}
 
 /** CSS Components **/
 .text-center{
@@ -39,6 +41,16 @@
 
 .mtop{
     margin-top: 15px;
+}
+
+.btn{
+    padding: 5px 10px;
+    display: block;
+    background: #f5f5f5;
+    float: left;
+    text-decoration: none;
+    color: black;
+    margin-right: 10px;
 }
 
 /** skeleton **/
@@ -75,6 +87,7 @@ body{
 .features .content, .samples .content{
     max-height: 43vh;
     overflow-y: scroll;
+    padding-bottom: 15px;
 }
 
 .plot_opts, .visual_holder{
@@ -92,6 +105,10 @@ body{
     min-height:350px;
     width: 100%;
     background-color: rgba(255, 255, 255, 0.5);
+}
+
+.visual-graph{
+    min-height: 400px;
 }
 /** elements **/
 
@@ -117,7 +134,7 @@ body{
     text-decoration: none;
     width: 100%;
     float: left;
-    padding: 3px 15px 3px 15px;
+    padding: 3px 5px 3px 15px;
 }
 
 .samples li a.active, .features li a.active{
@@ -183,7 +200,7 @@ table.dataframe tr:nth-child(odd) {
 }
 
 table.dataframe tr{
-    text-align: right;
+    text-align: left;
     vertical-align: middle;
     padding: 0.5em 0.5em;
     line-height: normal;
@@ -194,7 +211,7 @@ table.dataframe tr{
 
 table.dataframe th{
     font-weight: bold;
-    text-align: right;
+    text-align: left;
     vertical-align: middle;
     padding: 0.5em 0.5em;
     line-height: normal;
@@ -211,4 +228,84 @@ table.dataframe td{
     white-space: normal;
     max-width: none;
     border: 1px solid #555555
+}
+.inline-marker{
+    float: right;
+    border: 1px solid #555555;
+    padding: 2px 4px;
+    font-size: 0.7em;
+    display: none;
+}
+
+.visible{
+    display: block;
+}
+
+.canvascont{
+    width: 100%;
+    min-height: 300px;
+    float: left;
+}
+
+.btn-opt {
+    float: left;
+    min-height: 120px;
+    width: 120px;
+    padding: 15px;
+    border: 1px solid;
+    margin-right: 15px;
+    cursor: pointer;
+}
+
+.update-cont{
+    padding: 15px 10px 0 0;
+    background: #f5f5f5;
+}
+
+.update-vis{
+    width: 100%;
+    padding: 5px 10px;
+    background: grey;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+}
+
+.row input{
+    width: 60%;
+    float: right;
+    padding: 5px;
+}
+
+.row label{
+    width: 40%;
+    float: left;
+    padding: 5px;
+}
+
+.row{
+    padding: 10px 0;
+    float: left;
+    width: 100%;
+}
+
+.row:first-child{
+    margin-top: 15px;
+    border-top: 1px solid #f5f5f5;
+}
+
+.row:last-child{
+    margin-bottom: 15px;
+    border-bottom: 1px solid #f5f5f5;
+}
+
+.annotate-fields{
+    float: left;
+    width: 100%;
+}
+
+.modal .modal-txt{
+    width: 100%;
+    margin: 20px 0;
+    float: left;
 }

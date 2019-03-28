@@ -2,9 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c0602058-9340-4cf1-92bb-f308dd6d89b0" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data flow.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data flow.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doval/dashboard/static/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/doval/dashboard/static/css/styles.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doval/dashboard/static/js/custom.js" beforeDir="false" afterPath="$PROJECT_DIR$/doval/dashboard/static/js/custom.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doval/dashboard/templates/pages/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/doval/dashboard/templates/pages/dashboard.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doval/dashboard/templates/pages/visuals/table.html" beforeDir="false" afterPath="$PROJECT_DIR$/doval/dashboard/templates/pages/visuals/table.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doval/dashboard/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/doval/dashboard/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doval/dashboard/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/doval/dashboard/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doval/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/doval/db.sqlite3" afterDir="false" />
     </list>
@@ -14,13 +18,41 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DockManager">
+    <window id="1">
+      <content type="file-editors">
+        <state>
+          <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+            <file pinned="false" current-in-tab="true">
+              <entry file="file://$PROJECT_DIR$/doval/dashboard/static/js/canvasunminified.js">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state relative-caret-position="2093">
+                    <caret line="9175" column="39" lean-forward="true" selection-start-line="9175" selection-start-column="39" selection-end-line="9175" selection-end-column="39" />
+                  </state>
+                </provider>
+              </entry>
+            </file>
+          </leaf>
+        </state>
+      </content>
+    </window>
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/doval/dashboard/static/js/custom.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="449">
+              <caret line="397" column="87" lean-forward="true" selection-start-line="397" selection-start-column="87" selection-end-line="397" selection-end-column="87" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/doval/dashboard/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="731">
-              <caret line="97" lean-forward="true" selection-start-line="97" selection-end-line="97" />
+            <state relative-caret-position="578">
+              <caret line="109" column="28" selection-start-line="109" selection-start-column="28" selection-end-line="109" selection-end-column="28" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -29,19 +61,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/doval/dashboard/static/js/custom.js">
+        <entry file="file://$PROJECT_DIR$/doval/dashboard/static/css/styles.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="23" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="23" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/doval/dashboard/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="18" column="1" selection-start-line="18" selection-start-column="1" selection-end-line="18" selection-end-column="1" />
+            <state relative-caret-position="5032">
+              <caret line="296" column="16" selection-start-line="296" selection-start-column="16" selection-end-line="296" selection-end-column="16" />
             </state>
           </provider>
         </entry>
@@ -50,16 +73,7 @@
         <entry file="file://$PROJECT_DIR$/doval/dashboard/templates/pages/visuals/table.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="238">
-              <caret line="23" column="12" selection-start-line="23" selection-start-column="12" selection-end-line="23" selection-end-column="12" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/doval/dashboard/static/css/styles.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="524">
-              <caret line="162" column="1" lean-forward="true" selection-start-line="162" selection-start-column="1" selection-end-line="162" selection-end-column="1" />
+              <caret line="14" column="26" selection-start-line="14" selection-start-column="26" selection-end-line="14" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -67,17 +81,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/doval/dashboard/templates/pages/dashboard.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="59" column="14" lean-forward="true" selection-start-line="59" selection-start-column="14" selection-end-line="59" selection-end-column="14" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/doval/dashboard/templates/pages/localupload/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="27" column="14" selection-start-line="27" selection-start-column="14" selection-end-line="27" selection-end-column="14" />
+            <state relative-caret-position="578">
+              <caret line="34" column="18" selection-start-line="34" selection-start-column="18" selection-end-line="34" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -108,11 +113,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>base_dir</find>
       <find>.</find>
       <find>files</find>
       <find>gallery</find>
       <find>_</find>
+      <find>visual_g</find>
+      <find>typec</find>
+      <find>reques</find>
+      <find>content</find>
+      <find>updatev</find>
+      <find>annotate</find>
+      <find>span</find>
+      <find>btn</find>
+      <find>this.save</find>
+      <find>afterRender</find>
+      <find>afterRender()</find>
+      <find>afterrender</find>
+      <find>zobj</find>
+      <find>a,</find>
+      <find>CanvasXpress.factory.client</find>
+      <find>CanvasXpress</find>
+      <find>save()</find>
+      <find>function save</find>
+      <find>save</find>
+      <find>CanvasXpress.stack</find>
+      <find>.state</find>
+      <find>CanvasXpress.factory.client;</find>
+      <find>CanvasXpress.factory</find>
+      <find>Canvas</find>
+      <find>.save =</find>
+      <find>export</find>
     </findStrings>
     <dirStrings>
       <dir>C:\Users\Julian\Documents\visualiser\doval</dir>
@@ -138,16 +168,17 @@
         <option value="$PROJECT_DIR$/doval/dashboard/forms.py" />
         <option value="$PROJECT_DIR$/visenv/lib/python3.6/site-packages/dovalapi/__init__.py" />
         <option value="$PROJECT_DIR$/doval/dashboard/urls.py" />
-        <option value="$PROJECT_DIR$/doval/dashboard/templates/pages/dashboard.html" />
         <option value="$PROJECT_DIR$/doval/dashboard/views.py" />
-        <option value="$PROJECT_DIR$/doval/dashboard/templates/pages/visuals/table.html" />
-        <option value="$PROJECT_DIR$/doval/dashboard/static/js/custom.js" />
         <option value="$PROJECT_DIR$/doval/dashboard/static/css/styles.css" />
+        <option value="$PROJECT_DIR$/doval/dashboard/templates/pages/dashboard.html" />
+        <option value="$PROJECT_DIR$/doval/dashboard/templates/pages/visuals/table.html" />
+        <option value="$PROJECT_DIR$/doval/dashboard/static/js/canvasunminified.js" />
+        <option value="$PROJECT_DIR$/doval/dashboard/static/js/custom.js" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
+    <option name="x" value="-6" />
     <option name="y" value="-8" />
     <option name="width" value="1936" />
     <option name="height" value="1176" />
@@ -239,17 +270,6 @@
               <item name="doval" type="462c0819:PsiDirectoryNode" />
               <item name="doval" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="visualiser" type="b2602c69:ProjectViewProjectNode" />
-              <item name="visualiser" type="462c0819:PsiDirectoryNode" />
-              <item name="visenv" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="visualiser" type="b2602c69:ProjectViewProjectNode" />
-              <item name="visualiser" type="462c0819:PsiDirectoryNode" />
-              <item name="visenv" type="462c0819:PsiDirectoryNode" />
-              <item name="include" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -258,17 +278,17 @@
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Python Scripts/bokeh_project/bokeh_example/mysite/views.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../dovalapi" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Julian\Documents\visualiser\doval\dashboard\static\js" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Julian\Documents\visualiser\doval\dashboard\static\css" />
       <recent name="C:\Users\Julian\Documents\visualiser\doval\dashboard" />
       <recent name="C:\Users\Julian\Documents\visualiser\doval\dashboard\migrations\templates" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Julian\Documents\visualiser\doval\dashboard\static\js" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -321,6 +341,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1176" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12328767" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -333,8 +354,8 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.49947312" visible="true" weight="0.32981783" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50052685" side_tool="true" visible="true" weight="0.32981783" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.49683878" visible="true" weight="0.32981783" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50316125" side_tool="true" visible="true" weight="0.32981783" />
       <window_info anchor="bottom" id="Python Console" order="10" sideWeight="0.49947312" weight="0.32981783" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -409,13 +430,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/doval/files/files/filefolder.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="1" selection-start-column="1" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/doval/files/files/filefolder.gitignore" />
     <entry file="file://$PROJECT_DIR$/visenv/lib/python3.6/site-packages/dovalapi/IO.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -460,13 +475,6 @@
     <entry file="file://$PROJECT_DIR$/doval/doval/wsgi.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/doval/doval/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../Python Scripts/bokeh_project/bokeh_example/mysite/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="459">
@@ -474,13 +482,6 @@
           <folding>
             <element signature="e#0#55#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/doval/doval/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="629">
-          <caret line="37" column="34" selection-start-line="37" selection-start-column="34" selection-end-line="37" selection-end-column="34" />
         </state>
       </provider>
     </entry>
@@ -494,6 +495,75 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/.PyCharmCE2018.3/system/python_stubs/-907051770/builtins.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2264">
+          <caret line="300" column="4" selection-start-line="300" selection-start-column="4" selection-end-line="300" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/doval/doval/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" column="18" selection-start-line="26" selection-start-column="18" selection-end-line="26" selection-end-column="18" />
+          <folding>
+            <element signature="e#629#661#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/doval/dashboard/templates/pages/localupload/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="40" selection-start-line="21" selection-start-column="40" selection-end-line="21" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/doval/dashboard/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="19" column="1" selection-start-line="19" selection-start-column="1" selection-end-line="19" selection-end-column="1" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../canvasxpress/build/canvasunminified.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="313">
+          <caret line="9681" column="30" selection-start-line="9681" selection-start-column="30" selection-end-line="9681" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/doval/doval/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="30" column="45" selection-start-line="30" selection-start-column="45" selection-end-line="30" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/doval/dashboard/static/css/styles.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5032">
+          <caret line="296" column="16" selection-start-line="296" selection-start-column="16" selection-end-line="296" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/doval/dashboard/templates/pages/visuals/table.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="26" selection-start-line="14" selection-start-column="26" selection-end-line="14" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/doval/dashboard/templates/pages/dashboard.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="578">
+          <caret line="34" column="18" selection-start-line="34" selection-start-column="18" selection-end-line="34" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/doval/dashboard/forms.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -504,59 +574,24 @@
     <entry file="file://$PROJECT_DIR$/doval/dashboard/apps.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$USER_HOME$/.PyCharmCE2018.3/system/python_stubs/-907051770/builtins.py">
+    <entry file="file://$PROJECT_DIR$/doval/dashboard/static/js/canvasunminified.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2264">
-          <caret line="300" column="4" selection-start-line="300" selection-start-column="4" selection-end-line="300" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/doval/dashboard/templates/pages/localupload/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="27" column="14" selection-start-line="27" selection-start-column="14" selection-end-line="27" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/doval/dashboard/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="18" column="1" selection-start-line="18" selection-start-column="1" selection-end-line="18" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/doval/dashboard/templates/pages/dashboard.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="59" column="14" lean-forward="true" selection-start-line="59" selection-start-column="14" selection-end-line="59" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/doval/dashboard/templates/pages/visuals/table.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="23" column="12" selection-start-line="23" selection-start-column="12" selection-end-line="23" selection-end-column="12" />
+        <state relative-caret-position="2093">
+          <caret line="9175" column="39" lean-forward="true" selection-start-line="9175" selection-start-column="39" selection-end-line="9175" selection-end-column="39" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/doval/dashboard/static/js/custom.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="23" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/doval/dashboard/static/css/styles.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="524">
-          <caret line="162" column="1" lean-forward="true" selection-start-line="162" selection-start-column="1" selection-end-line="162" selection-end-column="1" />
+        <state relative-caret-position="449">
+          <caret line="397" column="87" lean-forward="true" selection-start-line="397" selection-start-column="87" selection-end-line="397" selection-end-column="87" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/doval/dashboard/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="731">
-          <caret line="97" lean-forward="true" selection-start-line="97" selection-end-line="97" />
+        <state relative-caret-position="578">
+          <caret line="109" column="28" selection-start-line="109" selection-start-column="28" selection-end-line="109" selection-end-column="28" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>

@@ -6,9 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>DOVAL</title>
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     {% block js-top %}
     {% endblock %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
     <div class="left">
@@ -28,6 +28,10 @@
                     {% endif %}
                 </ul>
                 {% endblock %}
+
+            </div>
+            <div class="update-cont">
+                <div class="update-vis" href="{% url 'dashboard:multiupdate' %}">Update visuals</div>
             </div>
         </div>
         <div class="samples">
@@ -61,6 +65,8 @@
         {% block below_vis %}
         {% endblock %}
     </div>
+    {% block modal %}
+    {% endblock %}
     <script src="{% static 'js/jquery.min.js' %}"></script>
     <script src="{% static 'js/custom.js' %}"></script>
     {% block javascript %}
