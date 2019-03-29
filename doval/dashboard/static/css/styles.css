@@ -51,6 +51,7 @@
     text-decoration: none;
     color: black;
     margin-right: 10px;
+    cursor: pointer;
 }
 
 /** skeleton **/
@@ -85,7 +86,7 @@ body{
 }
 
 .features .content, .samples .content{
-    max-height: 43vh;
+    max-height: 90vh;
     overflow-y: scroll;
     padding-bottom: 15px;
 }
@@ -108,7 +109,7 @@ body{
 }
 
 .visual-graph{
-    min-height: 400px;
+    min-height: 75vh;
 }
 /** elements **/
 
@@ -242,7 +243,7 @@ table.dataframe td{
 }
 
 .canvascont{
-    width: 100%;
+    width: 50%;
     min-height: 300px;
     float: left;
 }
@@ -304,8 +305,102 @@ table.dataframe td{
     width: 100%;
 }
 
+.modal{
+    min-width: 50vw;
+}
+
 .modal .modal-txt{
     width: 100%;
     margin: 20px 0;
     float: left;
+}
+
+.token{
+    display: none;
+}
+
+.tablebox{
+    float: right;
+    width: 40%;
+}
+
+.d-table{
+    overflow: scroll;
+    max-height: 70vh;
+    width: 100%;
+    float: left;
+}
+
+.tablebox label, .filter-in{
+    float: left;
+    padding: 5px 15px;
+    margin-right: 10px;
+}
+
+.tablebox label{
+    padding-left: 0px;
+}
+
+.table-headers{
+    padding: 5px 15px;
+    float: left;
+    background: white;
+    width: 100%;
+}
+
+.filter-in{
+    padding: 5px 10px;
+}
+
+.selectionvis{
+    width: 100%;
+    min-height: 50px;
+    background: #eeeeee;
+    border: 1px solid #e0e0e0;
+}
+
+.subset-left{
+    width: 70%;
+    float: left;
+}
+
+.results{
+    width:30%;
+    float: left;
+}
+
+#select-result{
+    min-height: 400px;
+    max-height: 400px;
+    overflow-y: scroll;
+}
+
+#select-result p{
+    border-bottom: 1px solid #eeeeee;
+    padding: 0px 15px;
+}
+
+.results{
+    border-left: 1px solid #eeeeee;
+}
+
+.result-title{
+    margin-bottom: 15px;
+    padding-left: 15px;
+}
+
+.bar{
+    float: left;
+}
+
+.selectionvis .ui-selecting {
+    background: blue;
+}
+
+.selectionvis .ui-selected {
+    background: rgb(0, 135, 247);
+}
+
+.sbst-left-title{
+    width: 100%;
 }

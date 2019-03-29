@@ -51,7 +51,8 @@ class SelectedFileView(View):
         df = pd.read_csv(settings.MEDIA_ROOT[0:-6] + selectfile['url'], sep=sep)
         br = dovalapi.BokehResources(dataframe=df)
         params = {'features': br.get_headers(),
-                  'samples': br.get_columns()}
+                  'samples': br.get_columns(),
+                  }
         return render(self.request, 'pages/visuals/table.html', params)
 
     def keyrequest(self, key):
@@ -71,7 +72,7 @@ class SelectedFileView(View):
         pass
 
 
-def updateview(selected=None, sample=None):
+def updateview(selected=None, sample=None, table=False):
     sep = dovalapi.utils.check_sep(settings.MEDIA_ROOT[0:-6] + selectfile['url'])
     df = pd.read_csv(settings.MEDIA_ROOT[0:-6] + selectfile['url'], sep=sep)
     if len(sample) > 0:
@@ -83,7 +84,18 @@ def updateview(selected=None, sample=None):
             df = df.set_index(df.columns[0]).loc[sample, :]
             df = df.reset_index()
     print('features in: ', selected)
-    return JsonResponse({'keys': selected, 'df': df.to_json(orient='split')})
+    if table:
+        return JsonResponse({'keys': selected, 'df': df.to_json(orient='split'), 'datatable': df.set_index(df.columns[0])[selected].to_html()})
+    else:
+        return JsonResponse({'keys': selected, 'df': df.to_json(orient='split') })
+
+def updatetable(request):
+    sep = dovalapi.utils.check_sep(settings.MEDIA_ROOT[0:-6] + selectfile['url'])
+    df = pd.read_csv(settings.MEDIA_ROOT[0:-6] + selectfile['url'], sep=sep)
+
+
+
+    return JsonResponse({})
 
 def tohome(request):
     '''
@@ -102,8 +114,19 @@ def tohome(request):
 
 def multiupdate(request):
     list = json.loads(request.GET['values'])
-    return updateview(selected=list, sample=samples)
+    if (list == keys):
+        return updateview(selected=list, sample=samples)
+    else:
+        return updateview(selected=list, sample=samples, table=True)
 
+def export(request):
+    """
+    Recieves json files from ajax call to export.
+    :param request:
+    :return:
+    """
+    file = json.loads(request.POST['expJSON'])
+    return JsonResponse({'result': 'succes'})
 
 def key_select(key):
     if key+'_cat' in keys:

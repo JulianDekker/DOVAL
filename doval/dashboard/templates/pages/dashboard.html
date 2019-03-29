@@ -34,24 +34,6 @@
                 <div class="update-vis" href="{% url 'dashboard:multiupdate' %}">Update visuals</div>
             </div>
         </div>
-        <div class="samples">
-            <div class="titlebar">
-                Samples
-            </div>
-            <div class="content">
-                {% block samples %}
-                <ul>
-                    {% if filename %}
-                        {% for sample in samples %}
-                        <li><a href="#">{{feature}}</a></li>
-                        {% endfor %}
-                    {% else %}
-                    <li><a>No file selected</a></li>
-                    {% endif %}
-                </ul>
-                {% endblock %}
-            </div>
-        </div>
     </div>
     <div class="right">
         <div class="plot_opts mtop">

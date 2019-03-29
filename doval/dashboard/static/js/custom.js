@@ -80,6 +80,54 @@ $( document ).ready(function() {
         }
     })
 
+    $('.subst-btn').on('click', function(){
+        var selected = []
+        console.log('click!')
+        df = JSON.parse(resulting.df)
+        console.log(df)
+        visdatasize(df.index.length)
+        $('.samp-n').html(df.index.length)
+        $( ".selectionvis" ).selectable({
+          stop: function() {
+                selected = [];
+                $('#select-result').empty()
+                $( ".ui-selected", this ).each(function() {
+                  var index = $(this ).attr( 'value' );
+                  selected.push(index);
+                  $('.resultlen').html(selected.length)
+                });
+                for (i=0; i<selected.length; i++){
+                    $('#select-result').append('<p>'+df.data[selected[i]][0]+'</p>')
+                }
+                console.log(selected)
+              }
+        });
+        $('.rnd-input').change(function(){
+            $('.selectionvis').find('.bar').removeClass('ui-selected')
+            var n = parseInt($('.rnd-input').val())
+            if (n > df.data.length){
+                n = df.data.length
+                $('.rnd-input').val(n)
+            }
+            $('.resultlen').html(n)
+            selected = []
+            $('#select-result').empty()
+            for (i=0; i<n; i++){
+                index = getRndInteger(0, df.data.length)
+                while (selected.includes(index)){
+                    index = getRndInteger(0, df.data.length)
+                    console.log('retry', index)
+                }
+                selected.push(index)
+            }
+            selected = selected.sort()
+            for (i=0; i<selected.length; i++){
+                $('#select-result').append('<p>'+df.data[selected[i]][0]+'</p>')
+                $('.selectionvis').find('.bar[value='+selected[i]+']').addClass('ui-selected')
+            }
+        })
+    })
+
     $(window).on('resize', function(){
         sizeWindow()
     })
@@ -141,6 +189,9 @@ function lineplot(df, keys, type){
     plotstyles['graphType'] = type
     plotstyles['summaryType'] = "raw"
     plotstyles['lineType'] = "spline"
+    plotstyles['groupingFactors']= [
+
+    ]
     plotstyles.smpLabelRotate = 0
 
     if (zobj){
@@ -268,7 +319,7 @@ function standartstyling(len){
       xAxis2Show: false,
       xAxisMinorTicks: false,
       xAxisTickColor: "white",
-      showDataTable: true,
+      showDataTable: false,
       maxDOENumber: len-1,
       lineThickness: 1.5,
       maxCols: 5,
@@ -281,7 +332,7 @@ function standartstyling(len){
 function buildCanvasXpress(xobj, yobj, styling, zobj=null){
     //'''Builds the canvasXpress plot'''
     sizewidth = sizeWindow()
-    $('.canvascont').html("<canvas id='canvas' width='"+ (sizewidth[0]-90).toString() +"' height='"+ (sizewidth[0]-90).toString() +"' aspectRatio='1:1' responsive='true'></canvas>")
+    $('.canvascont').html("<canvas id='canvas' width='"+ ((sizewidth[1]/100)*60).toString() +"' height='"+ (sizewidth[0]-90).toString() +"' aspectRatio='1:1' responsive='true'></canvas>")
     canvasX = new DUVALCanvasXpress("canvas", {
       y: yobj,
       x: xobj,
@@ -292,10 +343,13 @@ function buildCanvasXpress(xobj, yobj, styling, zobj=null){
     //console.log(canvasX.geo)
     //console.log(canvasX.saveRemote('webService', '1', canvasX ))
     //customsave(canvasX)
+    //console.log($('cX-DataFilterInput'))
     canvasX.triggerDataLoaded = function(n){
-        console.log(canvasX.getSaveJson())
+        //exportJSON(canvasX.getSaveJson())
     //    console.log('I control this now')
+
     }
+    //canvasX.consolelogthis()
 
 
 }
@@ -351,6 +405,10 @@ function multirequest(type, list=null){
         traditional: true,
         success: function(result){
             resulting = result
+            console.log(result)
+            if (result.datatable){
+                $('.d-table').html(result.datatable)
+            }
             typecheck(result.df ,result.keys, type)
         }});
     }
@@ -382,12 +440,17 @@ function tableUpdater(vars, samps){
     }
 }
 
-function export(json){
-    if (!(vars == null) || !(samps == null)){
+function exportJSON(json){
+    if (!(json == null)){
         vars = JSON.stringify(json)
+        var token = $('.token')[0].innerHTML
         $.ajax({
+            method: 'POST',
             url: '/annotate/export',
-            data: {'expJSON': vars},
+            data: {
+                'expJSON': vars,
+                csrfmiddlewaretoken: token
+            },
             traditional: true,
             success: function(result){
                 console.log('data send, response: ' + result.result)
@@ -401,7 +464,6 @@ function export(json){
 
 function sizeWindow(){
     //'''Resizes graph amd container of graph'''
-
     optsHeight = $('.plot_opts').outerHeight()
     docHeight = $(document).height()
     btnHeight = $('.btn-upload').outerHeight()
@@ -429,6 +491,22 @@ function findAttr(container, attr){
     return selectlist
 }
 
+function getRndInteger(min, max) {
+  return Math.floor(Math.random() * (max - min) ) + min;
+}
+
+function visdatasize(size){
+    $('#ex2').modal().ready(function(){
+        var selectionwidth = ($('.selectionvis').width()/size)
+        $('.selectionvis').html('')
+        for (i=0; i<size; i++){
+            $('.selectionvis').append(`<div class='bar' value=${i}></div>`)
+        }
+        $('.bar').css({'width':selectionwidth+'px', 'height':'50px'})
+    })
+
+}
+
 class DUVALCanvasXpress extends CanvasXpress{
   getSaveJson = function(t) {
         return function(e, f, p) {
@@ -450,4 +528,11 @@ class DUVALCanvasXpress extends CanvasXpress{
             return obj
         }
     }(this);
+
+  consolelogthis = function (){
+    console.log(console.log(this.groupingFactors))
+    //this.groupingFactors = ['Class']
+    //this.groupSamples(this.groupingFactors, false, false, false, true)
+    //this.toggleAttribute('xAxisShow')
+  }
 }

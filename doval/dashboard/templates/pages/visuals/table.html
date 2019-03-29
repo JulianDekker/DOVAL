@@ -11,6 +11,7 @@
 {% endblock %}
 
 {% block javascript %}
+<script src="{% static 'js/jquery-ui.min.js' %}"></script>
 <script src="{% static 'js/jquery.modal.min.js' %}"></script>
 <!--{{ script | safe }}-->
 {% endblock %}
@@ -22,9 +23,10 @@
     <div class="btn-opt" type="Scatter">Scatter 2-3D</div>
     <div class="btn-opt" type="Heatmap">Heatmap</div>
     <div class="btn-opt" type="Line">Line</div>
+    <div class="token">{{ csrf_token }}</div>
 </div>
 <div class="funct-bar">
-    <a class="funct btn" href="#ex1" rel="modal:open">Annotate features</a>
+
 </div>
 {% endblock %}
 
@@ -34,10 +36,22 @@
     </div>
     <div class="visual-graph">
         <div class="canvascont">
-            <canvas id="canvas" aspectRatio='1:2' responsive='true'>    <!--canvas id='bar1' width='290' height='540' ></canvas-->
+            <canvas id="canvas" responsive='true'>    <!--canvas id='bar1' width='290' height='540' ></canvas-->
 
                 <h2 class="text-center mtop">Please select features to visualise by clicking on them.</h2>
             </canvas>
+        </div>
+        <div class="tablebox">
+            <div class="table-headers">
+                <a class="btn subst-btn"  href="#ex2" rel="modal:open">Subset data</a>
+                <a class="funct btn" href="#ex1" rel="modal:open">Annotate features</a>
+            </div>
+            <div class="p-table">
+
+            </div>
+            <div class="d-table">
+                {{datatable | safe}}
+            </div>
         </div>
     </div>
 {% endblock %}
@@ -53,20 +67,31 @@
 </ul>
 {% endblock %}
 
-{% block samples %}
-<ul>
-    {% for sample in samples %}
-    <li><a href="#" value="{% url 'dashboard:samp_selection' sample=sample %}">{{sample}}</a></li>
-    {% endfor %}
-</ul>
-{% endblock %}
-
 {% block modal %}
-<div id="ex1" class="modal">
+<div id="ex1" class="modal annotate">
   <p>Add information about your features below.</p>
   <div class="annotate-fields">
 
   </div>
   <a href="#" class="save-anot btn" rel="modal:close">Save and close</a><a href="#" rel="modal:close" class="btn">Back</a>
+</div>
+<div id="ex2" class="modal subset">
+  <div class="subset-left">
+      <span class="sbst-left-title">Graphical selection (total samples n=<span class="samp-n"></span>)</span>
+      <div class="selectionvis" id="selectvis">
+
+      </div>
+      <div class="rnd-smps">
+          <label>Random selection: </label>
+          <input type="text" class="rnd-input" value="0">
+      </div>
+  </div>
+  <div class="results">
+      <div class="result-title">
+          Selected subset (n=<span class="resultlen"></span>):
+      </div>
+      <div id="select-result"></div>
+  </div>
+  <a href="#" class="btn" rel="modal:close">Update and close</a><a href="#" rel="modal:close" class="btn">Back</a>
 </div>
 {% endblock %}
