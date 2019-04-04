@@ -14,8 +14,10 @@ urlpatterns = [
     url(r'^$', views.DragAndDropUploadView.as_view(), name='drag_and_drop_upload'),
     url(r'^annotate$', views.SelectedFileView.as_view(), name='annotate'),
     url(r'^annotate/k(?P<key>.+)$', views.SelectedFileView.keyrequest, name='key_selection'),
-    url(r'^annotate/s(?P<sample>.+)$', views.SelectedFileView.samprequest, name='samp_selection'),
+    #url(r'^annotate/s(?P<sample>.+)$', views.SelectedFileView.samprequest, name='samp_selection'),
     url(r'^annotate/update', views.multiupdate, name='multiupdate'),
     url(r'^annotate/export', views.export, name='export'),
+    url(r'^annotate/subset', views.subset, name='subset'),
+    url(r'^annotate/pivot', views.pivot, name='pivot'),
     url(r'^start$', views.tohome, name='back')
 ]

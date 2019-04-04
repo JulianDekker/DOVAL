@@ -404,3 +404,17 @@ table.dataframe td{
 .sbst-left-title{
     width: 100%;
 }
+
+.potential-text-on-selection{
+    position: absolute;
+    top: 51px;
+    z-index: 0;
+    color: white;
+    pointer-events: none;
+    text-shadow: 0 0 3px black;
+}
+
+.label-select{
+    width: 100%;
+    float: left;
+}

@@ -63,4 +63,11 @@ work on exporter functionality
 
 gave feedback on canvasxpress github
 
+visualisation tool: if someone shares his dataset by excel you don't know what happened to it. in this you can track what you did.
+if someone wants to reproduce your r project he needs to install all your packages, in the right version number first then it can still be different. with this tool you can check your dataset without installing anything.
+
+canvasx v 23.5 04/04. Author responded to questions fix to some problems coming in 23.6. 
+
+why is it better than existing tools?
+
 

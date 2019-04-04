@@ -4,9 +4,9 @@
 
 {% block js-top %}
 <!--{{ resource | safe }}-->
-<link rel="stylesheet" href="{% static 'css/canvasXpress.css' %}">
+<link rel="stylesheet" href="{% static 'css/canvasXpress-23.5.css' %}">
 <link rel="stylesheet" href="{% static 'css/jquery.modal.min.css' %}">
-<script src="{% static 'js/canvasunminified.js' %}"></script>
+<script src="{% static 'js/canvasXpress.min-23.5.js' %}"></script>
 
 {% endblock %}
 
@@ -45,6 +45,7 @@
             <div class="table-headers">
                 <a class="btn subst-btn"  href="#ex2" rel="modal:open">Subset data</a>
                 <a class="funct btn" href="#ex1" rel="modal:open">Annotate features</a>
+                <a class="btn" href="#ex3" rel="modal:open">Pivot dataset</a>
             </div>
             <div class="p-table">
 
@@ -92,6 +93,48 @@
       </div>
       <div id="select-result"></div>
   </div>
-  <a href="#" class="btn" rel="modal:close">Update and close</a><a href="#" rel="modal:close" class="btn">Back</a>
+  <a href="#" class="btn update-subset" rel="modal:close">Update and close</a><a href="#" rel="modal:close" class="btn">Back</a>
+</div>
+<div id="ex3" class="modal pivot">
+  <p>Pivot your dataset.</p>
+  <div class="pivot-form">
+    <div class="label-select">
+        <label>First pivot on: </label>
+        <select>
+            <option selected>None</option>
+            {% for feature in features %}
+            <option value="{{ feature }}">{{ feature }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="label-select">
+        <label>Second pivot on: </label>
+        <select>
+            <option selected>None</option>
+            {% for feature in features %}
+            <option value="{{ feature }}">{{ feature }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="label-select">
+        <label>Third pivot on: </label>
+        <select>
+            <option selected>None</option>
+            {% for feature in features %}
+            <option value="{{ feature }}">{{ feature }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="label-select">
+        <label>Fourth pivot on: </label>
+        <select>
+            <option selected>None</option>
+            {% for feature in features %}
+            <option value="{{ feature }}">{{ feature }}</option>
+            {% endfor %}
+        </select>
+    </div>
+  </div>
+  <a href="#" class="btn pivot-apply" rel="modal:close">Save and close</a><a href="#" rel="modal:close" class="btn">Back</a>
 </div>
 {% endblock %}

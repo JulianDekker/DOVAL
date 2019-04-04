@@ -81,10 +81,8 @@ $( document ).ready(function() {
     })
 
     $('.subst-btn').on('click', function(){
-        var selected = []
-        console.log('click!')
+        let selected = []
         df = JSON.parse(resulting.df)
-        console.log(df)
         visdatasize(df.index.length)
         $('.samp-n').html(df.index.length)
         $( ".selectionvis" ).selectable({
@@ -102,31 +100,60 @@ $( document ).ready(function() {
                 console.log(selected)
               }
         });
-        $('.rnd-input').change(function(){
-            $('.selectionvis').find('.bar').removeClass('ui-selected')
-            var n = parseInt($('.rnd-input').val())
-            if (n > df.data.length){
-                n = df.data.length
-                $('.rnd-input').val(n)
-            }
-            $('.resultlen').html(n)
-            selected = []
-            $('#select-result').empty()
-            for (i=0; i<n; i++){
-                index = getRndInteger(0, df.data.length)
-                while (selected.includes(index)){
-                    index = getRndInteger(0, df.data.length)
-                    console.log('retry', index)
-                }
-                selected.push(index)
-            }
-            selected = selected.sort()
-            for (i=0; i<selected.length; i++){
-                $('#select-result').append('<p>'+df.data[selected[i]][0]+'</p>')
-                $('.selectionvis').find('.bar[value='+selected[i]+']').addClass('ui-selected')
-            }
-        })
     })
+
+    $('.rnd-input').change(function(){
+            selected = doSelect()
+    })
+
+    $('.rnd-input').keypress(function(e){
+        var keycode = (e.keyCode ? e.keyCode : e.which)
+        if (keycode == '13') {
+            selected = doSelect();
+        }
+    })
+
+    $('.update-subset').on('click', function(){
+        if (selected){
+            updateSubset(selected, type)
+        }
+    })
+
+    $('.pivot-apply').on('click', function(){
+        var datalist = []
+        $.each($(".label-select"), function(){
+            datalist.push($(this).find(':selected').val())
+        })
+        pivotTable(datalist)
+    })
+
+    function doSelect(){
+        $('.selectionvis').find('.bar').removeClass('ui-selected')
+        var n = parseInt($('.rnd-input').val())
+        if (n > df.data.length){
+            n = df.data.length
+            $('.rnd-input').val(n)
+        }
+        $('.resultlen').html(n)
+        selected = []
+        $('#select-result').empty()
+        for (i=0; i<n; i++){
+            index = getRndInteger(0, df.data.length)
+            while (selected.includes(index)){
+                index = getRndInteger(0, df.data.length)
+            }
+            selected.push(index)
+        }
+        selected = selected.sort()
+        for (i=0; i<selected.length; i++){
+            $('#select-result').append('<p>'+df.data[selected[i]][0]+'</p>')
+            $('.selectionvis').find('.bar[value='+selected[i]+']').addClass('ui-selected')
+        }
+
+        return selected
+    }
+
+
 
     $(window).on('resize', function(){
         sizeWindow()
@@ -324,7 +351,7 @@ function standartstyling(len){
       lineThickness: 1.5,
       maxCols: 5,
       maxRows: 20,
-      showTransition: true
+      //showTransition: true
       }
     return obj
 }
@@ -338,18 +365,9 @@ function buildCanvasXpress(xobj, yobj, styling, zobj=null){
       x: xobj,
       z: zobj
     }, styling, false);
-    console.log(canvasX)
     $('#canvas-cX-DataTable').css({'left': sizewidth[0]-75, 'top' : 0-(sizewidth[0]-85)})
-    //console.log(canvasX.geo)
-    //console.log(canvasX.saveRemote('webService', '1', canvasX ))
-    //customsave(canvasX)
-    //console.log($('cX-DataFilterInput'))
     canvasX.triggerDataLoaded = function(n){
-        //exportJSON(canvasX.getSaveJson())
-    //    console.log('I control this now')
-
     }
-    //canvasX.consolelogthis()
 
 
 }
@@ -405,7 +423,6 @@ function multirequest(type, list=null){
         traditional: true,
         success: function(result){
             resulting = result
-            console.log(result)
             if (result.datatable){
                 $('.d-table').html(result.datatable)
             }
@@ -422,22 +439,42 @@ function multirequest(type, list=null){
     }
 }
 
-function tableUpdater(vars, samps){
-    if (!(vars == null) || !(samps == null)){
-        vars = JSON.stringify(vars)
-        samps = JSON.stringify(samps)
-        $.ajax({
-            url: '/annotate/ddddddd',
-            data: {'values': vars},
-            traditional: true,
-            success: function(result){
-                console.log('dddasdsadasdasdaddasdasdads')
+function updateSubset(samps, type){
+    samps = JSON.stringify(samps)
+    var token = $('.token')[0].innerHTML
+    $.ajax({
+        method: 'POST',
+        url: '/annotate/subset',
+        data: {
+            'subset': samps,
+            'subvar': JSON.stringify('something'),
+            csrfmiddlewaretoken: token
+        },
+        traditional: true,
+        success: function(result){
+            console.log('enter success')
+            $('.d-table').html(result.datatable)
+            resulting = result
+            typecheck(result.df ,result.keys, type)
+            console.log('data send, response: ' + result)
+        }
+    });
+}
+
+function pivotTable(data){
+
+    $.ajax({
+        url: '/annotate/pivot',
+        data: {'data': JSON.stringify(data)},
+        success: function(result){
+            $('.p-table').html('')
+            $('.p-table').html(result.pivottable)
+            canvasX.groupingFactors = []
+            for (i=0; i<result.pivotkey.length;i++){
+                canvasX.modifySampleGroups(result.pivotkey[i])
             }
-        });
-    }
-    else{
-        throw 'error in tableupdate function. vars or samps does not exist or is null.'
-    }
+        }
+    });
 }
 
 function exportJSON(json){

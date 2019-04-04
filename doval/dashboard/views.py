@@ -22,11 +22,14 @@ class DragAndDropUploadView(View):
     '''
     def get(self, request):
         form = FileForm()
-        clear_database()
+
+        #if len(file.objects.all()) > 0:
+        #    clear_database()
         return render(self.request, 'pages/localupload/index.html', {'uploadform': form})
 
     def post(self, request):
         form = FileForm(self.request.POST, self.request.FILES)
+        #print(self.request.FILES.name)
         if form.is_valid():
             file = form.save()
             data = {'is_valid': True, 'name': file.file.name, 'url': file.file.url}
@@ -58,44 +61,59 @@ class SelectedFileView(View):
     def keyrequest(self, key):
         print(key, list)
         print('keyreq')
+        fv = FileViewing()
         if key is not None:
             selected = key_select(key)
-            return updateview(selected=selected, sample=samples)
+            return fv.updateview(selected=selected, sample=samples)
 
     def samprequest(self, sample):
         print('samplereq')
+        fv = FileViewing()
         if sample is not None:
             samp = samp_select(sample)
-            return updateview(selected=keys, sample=samp)
+            return fv.updateview(selected=keys, sample=samp)
 
     def post(self, request):
         pass
 
 
-def updateview(selected=None, sample=None, table=False):
-    sep = dovalapi.utils.check_sep(settings.MEDIA_ROOT[0:-6] + selectfile['url'])
-    df = pd.read_csv(settings.MEDIA_ROOT[0:-6] + selectfile['url'], sep=sep)
-    if len(sample) > 0:
-        try:
-            sample = [int(s) for s in sample]
-        except:
-            print("Cannot convert index to integer")
-        finally:
-            df = df.set_index(df.columns[0]).loc[sample, :]
-            df = df.reset_index()
-    print('features in: ', selected)
-    if table:
-        return JsonResponse({'keys': selected, 'df': df.to_json(orient='split'), 'datatable': df.set_index(df.columns[0])[selected].to_html()})
-    else:
-        return JsonResponse({'keys': selected, 'df': df.to_json(orient='split') })
+class FileViewing:
 
-def updatetable(request):
-    sep = dovalapi.utils.check_sep(settings.MEDIA_ROOT[0:-6] + selectfile['url'])
-    df = pd.read_csv(settings.MEDIA_ROOT[0:-6] + selectfile['url'], sep=sep)
+    def __init__(self):
+        if selectfile:
+            self.sep = dovalapi.utils.check_sep(settings.MEDIA_ROOT[0:-6] + selectfile['url'])
+            self.df = pd.read_csv(settings.MEDIA_ROOT[0:-6] + selectfile['url'], sep=self.sep)
 
+    def updateview(self, selected=None, sample=None, table=False):
+        if len(sample) > 0:
+            try:
+                sample = [int(s) for s in sample]
+            except:
+                print("Cannot convert index to integer")
+            finally:
+                self.df = self.df.set_index(self.df.columns[0]).loc[sample, :]
+                self.df = self.df.reset_index()
+        print('features in: ', selected)
+        if table:
+            return JsonResponse({'keys': selected, 'df': self.df.to_json(orient='split'), 'datatable': self.df.set_index(self.df.columns[0])[selected].to_html()})
+        else:
+            return JsonResponse({'keys': selected, 'df': self.df.to_json(orient='split')})
 
+    def subsetOnIndex(self, indexlist):
+        global samples
+        indexlist = [int(x) for x in indexlist]
+        samplelist = []
+        for i in sorted(indexlist):
+            samplelist.append(self.df[self.df.columns[0]][i])
+        samples = samplelist
+        print(samples)
+        return self.updateview(selected=keys, sample=samplelist, table=True)
 
-    return JsonResponse({})
+    def generatePivotTable(self, list):
+        dovutils = dovalapi.utils()
+        pivottable = dovutils.pivottable(self.df, list, aggfun=['count'])
+        return pivottable.to_html()
+
 
 def tohome(request):
     '''
@@ -113,11 +131,16 @@ def tohome(request):
 
 
 def multiupdate(request):
+    fv = FileViewing()
+    global keys
+    global samples
     list = json.loads(request.GET['values'])
-    if (list == keys):
-        return updateview(selected=list, sample=samples)
+    if list == keys:
+        return fv.updateview(selected=list, sample=samples)
     else:
-        return updateview(selected=list, sample=samples, table=True)
+        keys = list
+        return fv.updateview(selected=list, sample=samples, table=True)
+
 
 def export(request):
     """
@@ -127,6 +150,28 @@ def export(request):
     """
     file = json.loads(request.POST['expJSON'])
     return JsonResponse({'result': 'succes'})
+
+
+def subset(request):
+    fv = FileViewing()
+    indexes = json.loads(request.POST['subset'])
+    print('subset fn', indexes)
+    return fv.subsetOnIndex(indexlist=indexes)
+
+def pivot(request):
+    fv = FileViewing()
+    table = ''
+    pivotPrio = json.loads(request.GET['data'])
+    pivotPrio = list(filter(lambda x: not (x == 'None'), pivotPrio))
+    if len(pivotPrio) > 0:
+        for key in keys:
+            pivotPrio.insert(0, key)
+            table += fv.generatePivotTable(pivotPrio)
+            pivotPrio.pop(0)
+        return JsonResponse({'pivottable': table, 'pivotkey': pivotPrio})
+    else:
+        return JsonResponse({'pivottable': ''})
+
 
 def key_select(key):
     if key+'_cat' in keys:
@@ -148,8 +193,6 @@ def samp_select(sample):
     else:
         del samples[samples.index(sample)]
     return samples
-
-
 
 
 def clear_database():
