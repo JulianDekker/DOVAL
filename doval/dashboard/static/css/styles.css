@@ -322,13 +322,21 @@ table.dataframe td{
 .tablebox{
     float: right;
     width: 40%;
+    max-height: 75vh;
+    overflow-y: scroll
 }
 
 .d-table{
     overflow: scroll;
-    max-height: 70vh;
     width: 100%;
     float: left;
+}
+
+.p-table, .d-table{
+    padding: 15px 0 15px 15px;
+    background: #fff;
+    float: left;
+    width: 100%;
 }
 
 .tablebox label, .filter-in{
@@ -346,6 +354,9 @@ table.dataframe td{
     float: left;
     background: white;
     width: 100%;
+    position: sticky;
+    top: 0;
+    left: 0;
 }
 
 .filter-in{
@@ -417,4 +428,30 @@ table.dataframe td{
 .label-select{
     width: 100%;
     float: left;
+    padding-top: 15px;
+}
+
+.label-select:last-child{
+    padding-bottom: 15px;
+}
+
+.label-select label{
+    width: 40%;
+}
+
+.label-select label, .label-select select{
+    float: left;
+    padding: 5px 10px;
+}
+
+.label-select select{
+    width: 60%;
+}
+
+.pivot-form{
+    margin: 15px 0;
+    width: 100%;
+    float: left;
+    border-top: 1px solid #f5f5f5;
+    border-bottom: 1px solid #f5f5f5;
 }

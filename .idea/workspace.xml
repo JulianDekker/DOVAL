@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c0602058-9340-4cf1-92bb-f308dd6d89b0" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data flow.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data flow.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doval/dashboard/static/css/canvasXpress-1.css" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/doval/dashboard/static/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/doval/dashboard/static/css/styles.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doval/dashboard/static/js/custom.js" beforeDir="false" afterPath="$PROJECT_DIR$/doval/dashboard/static/js/custom.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doval/dashboard/templates/pages/visuals/table.html" beforeDir="false" afterPath="$PROJECT_DIR$/doval/dashboard/templates/pages/visuals/table.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doval/dashboard/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/doval/dashboard/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doval/dashboard/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/doval/dashboard/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doval/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/doval/db.sqlite3" afterDir="false" />
     </list>
@@ -20,20 +15,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/doval/dashboard/static/js/custom.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="770">
-              <caret line="510" lean-forward="true" selection-start-line="510" selection-end-line="510" />
+            <state relative-caret-position="512">
+              <caret line="502" column="9" lean-forward="true" selection-start-line="502" selection-start-column="9" selection-end-line="502" selection-end-column="9" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/doval/dashboard/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="639">
-              <caret line="170" column="71" selection-start-line="170" selection-start-column="71" selection-end-line="170" selection-end-column="71" />
+            <state relative-caret-position="595">
+              <caret line="107" column="28" lean-forward="true" selection-start-line="107" selection-start-column="28" selection-end-line="107" selection-end-column="28" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -74,8 +69,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/doval/dashboard/static/css/styles.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="640">
-              <caret line="418" column="16" selection-start-line="418" selection-start-column="16" selection-end-line="418" selection-end-column="16" />
+            <state relative-caret-position="1080">
+              <caret line="358" column="12" selection-start-line="358" selection-start-column="12" selection-end-line="358" selection-end-column="12" />
             </state>
           </provider>
         </entry>
@@ -83,7 +78,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/doval/dashboard/templates/pages/visuals/table.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="362">
+            <state relative-caret-position="506">
               <caret line="107" column="17" lean-forward="true" selection-start-line="107" selection-start-column="17" selection-end-line="107" selection-end-column="17" />
             </state>
           </provider>
@@ -106,7 +101,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>visual-grap</find>
       <find>btn</find>
       <find>segregated</find>
       <find>seg</find>
@@ -128,7 +122,6 @@
       <find>ubset</find>
       <find>updatev</find>
       <find>save-anot</find>
-      <find>table</find>
       <find>type</find>
       <find>updates</find>
       <find>pivotta</find>
@@ -136,6 +129,8 @@
       <find>upload</find>
       <find>clear</find>
       <find>group</find>
+      <find>typec</find>
+      <find>table</find>
     </findStrings>
     <dirStrings>
       <dir>C:\Users\Julian\Documents\visualiser\doval</dir>
@@ -161,20 +156,20 @@
         <option value="$PROJECT_DIR$/visenv/lib/python3.6/site-packages/dovalapi/__init__.py" />
         <option value="$PROJECT_DIR$/doval/dashboard/static/js/canvasunminified.js" />
         <option value="$PROJECT_DIR$/doval/dashboard/templates/pages/dashboard.html" />
-        <option value="$PROJECT_DIR$/doval/dashboard/static/css/styles.css" />
         <option value="$PROJECT_DIR$/doval/dashboard/urls.py" />
         <option value="$PROJECT_DIR$/doval/dashboard/templates/pages/visuals/table.html" />
         <option value="$PROJECT_DIR$/doval/dashboard/forms.py" />
         <option value="$PROJECT_DIR$/doval/dashboard/views.py" />
         <option value="$PROJECT_DIR$/doval/dashboard/static/js/custom.js" />
+        <option value="$PROJECT_DIR$/doval/dashboard/static/css/styles.css" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-268" />
+    <option name="x" value="-1928" />
     <option name="y" value="-8" />
     <option name="width" value="1936" />
-    <option name="height" value="1175" />
+    <option name="height" value="1176" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -333,7 +328,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-5" y="-5" width="1936" height="1176" extended-state="6" />
+    <frame x="-1928" y="-8" width="1936" height="1176" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12328767" />
@@ -536,17 +531,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/doval/dashboard/static/css/styles.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="640">
-          <caret line="418" column="16" selection-start-line="418" selection-start-column="16" selection-end-line="418" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/doval/dashboard/static/js/canvasunminified.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="288">
           <caret line="65906" column="6" lean-forward="true" selection-start-line="65906" selection-start-column="6" selection-end-line="65906" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/doval/dashboard/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/doval/dashboard/templates/pages/visuals/table.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="506">
+          <caret line="107" column="17" lean-forward="true" selection-start-line="107" selection-start-column="17" selection-end-line="107" selection-end-column="17" />
         </state>
       </provider>
     </entry>
@@ -560,13 +562,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/doval/dashboard/templates/pages/visuals/table.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="362">
-          <caret line="107" column="17" lean-forward="true" selection-start-line="107" selection-start-column="17" selection-end-line="107" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/doval/dashboard/forms.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -574,27 +569,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/doval/dashboard/models.py">
+    <entry file="file://$PROJECT_DIR$/doval/dashboard/static/js/custom.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+        <state relative-caret-position="512">
+          <caret line="502" column="9" lean-forward="true" selection-start-line="502" selection-start-column="9" selection-end-line="502" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/doval/dashboard/static/css/styles.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1080">
+          <caret line="358" column="12" selection-start-line="358" selection-start-column="12" selection-end-line="358" selection-end-column="12" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/doval/dashboard/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="639">
-          <caret line="170" column="71" selection-start-line="170" selection-start-column="71" selection-end-line="170" selection-end-column="71" />
+        <state relative-caret-position="595">
+          <caret line="107" column="28" lean-forward="true" selection-start-line="107" selection-start-column="28" selection-end-line="107" selection-end-column="28" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/doval/dashboard/static/js/custom.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="770">
-          <caret line="510" lean-forward="true" selection-start-line="510" selection-end-line="510" />
         </state>
       </provider>
     </entry>

@@ -2,6 +2,7 @@ var zobj = null
 var xobj = null
 var resulting = null
 var canvasX
+var extraOptions = {}
 
 $( document ).ready(function() {
     var clicklist = []
@@ -124,7 +125,7 @@ $( document ).ready(function() {
         $.each($(".label-select"), function(){
             datalist.push($(this).find(':selected').val())
         })
-        pivotTable(datalist)
+        pivotTable(datalist, type)
     })
 
     function doSelect(){
@@ -182,6 +183,10 @@ function boxplot(df, key, type, zobj=null){
     ]
     plotstyles['summaryType'] = "iqr"
 
+    for (i in extraOptions){
+        plotstyles[i] = extraOptions[i]
+    }
+
     if (zobj){
         buildCanvasXpress(create_annotations(obj, [key]), yobj, plotstyles, zobj)
     }
@@ -221,6 +226,10 @@ function lineplot(df, keys, type){
     ]
     plotstyles.smpLabelRotate = 0
 
+    for (i in extraOptions){
+        plotstyles[i] = extraOptions[i]
+    }
+
     if (zobj){
         buildCanvasXpress(create_annotations(obj, keys), yobj, plotstyles, zobj)
     }
@@ -251,6 +260,10 @@ function scatter(df, keys, type){
     plotstyles['summaryType'] = "raw"
     plotstyles.smpLabelRotate = 0
     //plotstyles.scatterPlotMatrix = true
+
+    for (i in extraOptions){
+        plotstyles[i] = extraOptions[i]
+    }
 
     if (xobj){
         buildCanvasXpress(xobj, yobj, plotstyles, createSingleAnnotations(obj, keys))
@@ -284,6 +297,11 @@ function heatmap(df, keys, type){
     plotstyles['heatmapIndicatorHistogram'] = true
     plotstyles['showHeatmapIndicator'] = true
     plotstyles.smpLabelRotate = 0
+
+    for (i in extraOptions){
+        plotstyles[i] = extraOptions[i]
+    }
+
     if (zobj){
         buildCanvasXpress(create_annotations(obj, keys), yobj, plotstyles, zobj)
     }
@@ -461,7 +479,7 @@ function updateSubset(samps, type){
     });
 }
 
-function pivotTable(data){
+function pivotTable(data, type){
 
     $.ajax({
         url: '/annotate/pivot',
@@ -473,6 +491,15 @@ function pivotTable(data){
             for (i=0; i<result.pivotkey.length;i++){
                 canvasX.modifySampleGroups(result.pivotkey[i])
             }
+            if (result.pivotkey.length > 0){
+                extraOptions['groupingFactors'] = result.pivotkey
+            }
+            else{
+                delete extraOptions.groupingFactors
+                typecheck(resulting.df ,resulting.keys, type)
+            }
+
+            console.log(extraOptions)
         }
     });
 }

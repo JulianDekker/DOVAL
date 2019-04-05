@@ -166,11 +166,12 @@ def pivot(request):
     if len(pivotPrio) > 0:
         for key in keys:
             pivotPrio.insert(0, key)
-            table += fv.generatePivotTable(pivotPrio)
+            title = '<p>{}</p>'.format(key)
+            table += title+fv.generatePivotTable(pivotPrio)
             pivotPrio.pop(0)
         return JsonResponse({'pivottable': table, 'pivotkey': pivotPrio})
     else:
-        return JsonResponse({'pivottable': ''})
+        return JsonResponse({'pivottable': '', 'pivotkey': []})
 
 
 def key_select(key):
