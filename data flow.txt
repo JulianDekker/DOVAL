@@ -70,4 +70,17 @@ canvasx v 23.5 04/04. Author responded to questions fix to some problems coming 
 
 why is it better than existing tools?
 
+canvas 23.6 07/04 Author fixed the reported problems. 
+
+Hierarchical pivot
+Pivot tables are used to summarise datasets based on multiple parameters. While implementations of pivot tables do exist (eg. Pandas Pivot table functionality) 
+there is no existing implementation for a pivot table using a hierarchical structure for element summarisation. 
+
+We developed a pivot table using a hierarchical structure, for this we use the pandas dataframe as base and a list of features to pivot on. 
+The hierarchical pivot function will group the data using the pandas groupby functionality and sumerize the result. 
+The resulting object contains a object of class Multiindex which summerizes all the values in the dataset.
+We loop through the values, count the total, and check if there is a next layer in the dataset. If the next layer exists the function calls itself and repeats until no next layer is found.
+By doing this a hierarchical structure is created where each value will have multiple subvalues unless it is a value in the last level of the multiindex.
+
+
 

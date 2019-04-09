@@ -4,9 +4,9 @@
 
 {% block js-top %}
 <!--{{ resource | safe }}-->
-<link rel="stylesheet" href="{% static 'css/canvasXpress-23.5.css' %}">
+<link rel="stylesheet" href="{% static 'css/canvasXpress-23.6.css' %}">
 <link rel="stylesheet" href="{% static 'css/jquery.modal.min.css' %}">
-<script src="{% static 'js/canvasXpress.min-23.5.js' %}"></script>
+<script src="{% static 'js/canvasXpress.min-23.6.js' %}"></script>
 
 {% endblock %}
 
@@ -19,10 +19,9 @@
 
 {% block plot_opts %}
 <div class="btn-box">
-    <div class="btn-opt" type="Boxplot">Boxplot 1D</div>
+    <div class="btn-opt" type="Boxplot">Boxplot</div>
     <div class="btn-opt" type="Scatter">Scatter 2-3D</div>
     <div class="btn-opt" type="Heatmap">Heatmap</div>
-    <div class="btn-opt" type="Line">Line</div>
     <div class="token">{{ csrf_token }}</div>
 </div>
 <div class="funct-bar">

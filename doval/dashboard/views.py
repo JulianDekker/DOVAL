@@ -111,8 +111,8 @@ class FileViewing:
 
     def generatePivotTable(self, list):
         dovutils = dovalapi.utils()
-        pivottable = dovutils.pivottable(self.df, list, aggfun=['count'])
-        return pivottable.to_html()
+        pivottable = dovutils.hierarchical_pivottable(self.df, list)
+        return pivottable
 
 
 def tohome(request):

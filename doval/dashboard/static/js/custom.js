@@ -126,7 +126,7 @@ $( document ).ready(function() {
             datalist.push($(this).find(':selected').val())
         })
         pivotTable(datalist, type)
-    })
+    });
 
     function doSelect(){
         $('.selectionvis').find('.bar').removeClass('ui-selected')
@@ -164,38 +164,8 @@ $( document ).ready(function() {
 
 const arrayColumn = (arr, n) => arr.map(x => x[n]);
 
-function boxplot(df, key, type, zobj=null){
-    //'''Builds the components for a boxplot from a dataset and displays sends them to the builder function'''
 
-    var key = key[0]
-    var obj = JSON.parse(df);
-    yobj = {}
-    yobj['smps'] = obj.index
-    yobj['data'] = [arrayColumn(obj.data, obj.columns.indexOf(key))]
-    yobj['vars'] = [key]
-
-    plotstyles = standartstyling()
-    plotstyles['title']= `${type} of ${key}`,
-    plotstyles['graphOrientation'] = "vertical"
-    plotstyles['graphType'] = type
-    plotstyles['groupingFactors']= [
-        "No group"
-    ]
-    plotstyles['summaryType'] = "iqr"
-
-    for (i in extraOptions){
-        plotstyles[i] = extraOptions[i]
-    }
-
-    if (zobj){
-        buildCanvasXpress(create_annotations(obj, [key]), yobj, plotstyles, zobj)
-    }
-    else{
-        buildCanvasXpress(create_annotations(obj, [key]), yobj, plotstyles)
-    }
-}
-
-function lineplot(df, keys, type){
+function boxplot(df, keys, type){
     //'''Builds the components for a lineplot from a dataset and displays sends them to the builder function'''
 
     sizeWindow()
@@ -219,10 +189,9 @@ function lineplot(df, keys, type){
     plotstyles['title']= `${type} of ${keys}`,
     plotstyles['graphOrientation'] = "vertical"
     plotstyles['graphType'] = type
-    plotstyles['summaryType'] = "raw"
-    plotstyles['lineType'] = "spline"
+    plotstyles['summaryType'] = "iqr"
     plotstyles['groupingFactors']= [
-
+        'No group'
     ]
     plotstyles.smpLabelRotate = 0
 
@@ -398,9 +367,6 @@ function typecheck(df, keys, type){
         case "Boxplot":
             return boxplot(df ,keys, type)
         break;
-        case "Line":
-            return lineplot(df ,keys, type)
-        break;
         case "Heatmap":
             return heatmap(df, keys, type)
         break;
@@ -498,6 +464,12 @@ function pivotTable(data, type){
                 delete extraOptions.groupingFactors
                 typecheck(resulting.df ,resulting.keys, type)
             }
+
+            $('.group-item').on('click', function(){
+                if ($(this).next().hasClass('cat-group')){
+                    $(this).next().toggle();
+                }
+            });
 
             console.log(extraOptions)
         }
