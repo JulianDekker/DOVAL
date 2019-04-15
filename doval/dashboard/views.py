@@ -1,7 +1,8 @@
 import os
+from os.path import join
 from django.shortcuts import render, render_to_response, redirect
 from django.conf import settings
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse, FileResponse
 from django.views import View
 import json
 #from bokeh.layouts import layout
@@ -10,6 +11,7 @@ import dovalapi
 from .forms import FileForm
 from .models import file
 import pandas as pd
+import numpy as np
 
 
 selectfile = {}
@@ -99,21 +101,83 @@ class FileViewing:
         else:
             return JsonResponse({'keys': selected, 'df': self.df.to_json(orient='split')})
 
-    def subsetOnIndex(self, indexlist):
+    def subsetView(self, samples, constraints):
+        if len(samples) > 0:
+            try:
+                samples = [int(s) for s in samples]
+            except:
+                print("Cannot convert index to integer")
+            finally:
+                self.df = self.df.set_index(self.df.columns[0]).loc[samples, :]
+                self.df = self.df.reset_index()
+        pivot = ''
+        if len(constraints) > 0:
+            self.df = dovalapi.utils.subset_partialselect(self.df, constraints)
+            features = list(constraints.keys())
+            for key in keys:
+                features.insert(0, key)
+                title = '<p>{}</p>'.format(key)
+                pivot += title+self.generatePivotTable(features)
+                features.pop(0)
+        return JsonResponse({'keys': keys, 'df': self.df.to_json(orient='split'), 'datatable': self.df.set_index(self.df.columns[0])[keys].to_html(), 'pivottable': pivot})
+
+    def subsetOnIndex(self, indexlist, constraints):
         global samples
         indexlist = [int(x) for x in indexlist]
         samplelist = []
         for i in sorted(indexlist):
             samplelist.append(self.df[self.df.columns[0]][i])
         samples = samplelist
-        print(samples)
-        return self.updateview(selected=keys, sample=samplelist, table=True)
+        return self.subsetView(samples=samplelist, constraints=constraints)
+
+    def subsetOnSamples(self, samplelist, constraints):
+        global samples
+        samples = samplelist
+        return self.subsetView(samples=samplelist, constraints=constraints)
+
+    def exportSubset(self, indexlist, constraints, type):
+        global samples
+        indexlist = [int(x) for x in indexlist]
+        samplelist = []
+        for i in sorted(indexlist):
+            samplelist.append(self.df[self.df.columns[0]][i])
+        samples = samplelist
+        if len(indexlist) > 0:
+            try:
+                samples = [int(s) for s in samplelist]
+            except:
+                print("Cannot convert index to integer")
+            finally:
+                self.df = self.df.set_index(self.df.columns[0]).loc[samplelist, :]
+                self.df = self.df.reset_index()
+
+
+        if len(constraints) > 0:
+            self.df = dovalapi.utils.subset_partialselect(self.df, constraints)
+        filename = selectfile['name'][6::]
+        filecontent = ''
+        if type == 'JSON':
+            filename += '_duvalsave.JSON'
+            filecontent = self.df.to_json(orient='split')
+        elif type == 'csv':
+            filename += '_duvalsave.csv'
+            filecontent = self.df.to_csv(index=False)
+        elif type == 'tsv':
+            filename += '_duvalsave.tsv'
+            filecontent = self.df.to_csv(sep='\t', index=False)
+        return JsonResponse({'filecontent': filecontent, 'filename': filename})
 
     def generatePivotTable(self, list):
         dovutils = dovalapi.utils()
         pivottable = dovutils.hierarchical_pivottable(self.df, list)
         return pivottable
 
+    def getNominalKey(self, key):
+        values = self.df[key].unique()
+        for i, val in enumerate(values):
+            if val is np.nan:
+                values[i] = "NA"
+        return values
 
 def tohome(request):
     '''
@@ -155,8 +219,19 @@ def export(request):
 def subset(request):
     fv = FileViewing()
     indexes = json.loads(request.POST['subset'])
-    print('subset fn', indexes)
-    return fv.subsetOnIndex(indexlist=indexes)
+    subvars = json.loads(request.POST['subvar'])
+    print('subset fn', indexes, subvars)
+    print('sel', samples)
+    if len(indexes) == 0 and len(samples) > 0:
+        return fv.subsetOnSamples(samplelist=samples, constraints=subvars)
+    return fv.subsetOnIndex(indexlist=indexes, constraints=subvars)
+
+def browsersave(request):
+    fv = FileViewing()
+    indexes = json.loads(request.POST['subset'])
+    subvars = json.loads(request.POST['subvar'])
+    subsettype = json.loads(request.POST['subsettype'])
+    return fv.exportSubset(indexes, subvars, subsettype)
 
 def pivot(request):
     fv = FileViewing()
@@ -173,6 +248,12 @@ def pivot(request):
     else:
         return JsonResponse({'pivottable': '', 'pivotkey': []})
 
+def nominalkey(request):
+    fv = FileViewing()
+    key = json.loads(request.GET['key'])
+    keys = fv.getNominalKey(key)
+    print(keys)
+    return JsonResponse({'keys': pd.Series(keys).to_json(orient='values')})
 
 def key_select(key):
     if key+'_cat' in keys:

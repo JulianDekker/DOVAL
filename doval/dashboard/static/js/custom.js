@@ -3,6 +3,8 @@ var xobj = null
 var resulting = null
 var canvasX
 var extraOptions = {}
+var subset = []
+var checkedsubset = {}
 
 $( document ).ready(function() {
     var clicklist = []
@@ -82,43 +84,92 @@ $( document ).ready(function() {
     })
 
     $('.subst-btn').on('click', function(){
-        let selected = []
+        //let selected = []
+        subset = []
         df = JSON.parse(resulting.df)
         visdatasize(df.index.length)
         $('.samp-n').html(df.index.length)
         $( ".selectionvis" ).selectable({
           stop: function() {
-                selected = [];
+                subset = [];
                 $('#select-result').empty()
                 $( ".ui-selected", this ).each(function() {
                   var index = $(this ).attr( 'value' );
-                  selected.push(index);
-                  $('.resultlen').html(selected.length)
+                  subset.push(index);
+                  $('.resultlen').html(subset.length)
                 });
-                for (i=0; i<selected.length; i++){
-                    $('#select-result').append('<p>'+df.data[selected[i]][0]+'</p>')
+                for (i=0; i<subset.length; i++){
+                    $('#select-result').append('<p>'+df.data[subset[i]][0]+'</p>')
                 }
-                console.log(selected)
+                //console.log(selected)
               }
         });
+        if (extraOptions['groupingFactors'].length > 0){
+            var outhtml = ''
+            $('.p-subst').html('')
+            for (i in extraOptions['groupingFactors']){
+                reqkey(extraOptions['groupingFactors'][i])
+            }
+        }
     })
 
     $('.rnd-input').change(function(){
-            selected = doSelect()
+            subset = doSelect()
     })
 
     $('.rnd-input').keypress(function(e){
         var keycode = (e.keyCode ? e.keyCode : e.which)
         if (keycode == '13') {
-            selected = doSelect();
+            subset = doSelect();
         }
     })
 
     $('.update-subset').on('click', function(){
-        if (selected){
-            updateSubset(selected, type)
+        if ($('.p-subst').length > 0){
+            var constraints = {}
+            $.each($(".p-subst-group"), function() {
+                var constr = $(this).find('input:checked')
+                var list = []
+                $.each(constr, function(){
+                    list.push($(this).val())
+                })
+                var name = $(this).find('input').attr('name')
+                constraints[name] = list
+            })
+        }
+        if (subset || (constraints.length > 0)){
+            updateSubset(subset, constraints, type)
         }
     })
+
+    $('.btn.save-subset').click(function(){
+        $('.save-subset .btn-context').toggle();
+    })
+
+    $('.save-subset .btn-context').mouseleave(function(){
+        $('.save-subset .btn-context').hide()
+    })
+
+    $('.context').click(function(){
+        var savetype = $(this).attr('value')
+        if ($('.p-subst').length > 0){
+            var constraints = {}
+            $.each($(".p-subst-group"), function() {
+                var constr = $(this).find('input:checked')
+                var list = []
+                $.each(constr, function(){
+                    list.push($(this).val())
+                })
+                var name = $(this).find('input').attr('name')
+                constraints[name] = list
+            })
+        }
+        if (subset || (constraints.length > 0)){
+            saveSubset(subset, constraints, savetype)
+        }
+    })
+
+
 
     $('.pivot-apply').on('click', function(){
         var datalist = []
@@ -164,6 +215,21 @@ $( document ).ready(function() {
 
 const arrayColumn = (arr, n) => arr.map(x => x[n]);
 
+function download(dataurl, filename) {
+  var a = document.createElement("a");
+  a.href = dataurl;
+  a.setAttribute("download", filename);
+  a.click();
+  return false;
+}
+
+function isEmpty(obj) {
+    for(var key in obj) {
+        if(obj.hasOwnProperty(key))
+            return false;
+    }
+    return true;
+}
 
 function boxplot(df, keys, type){
     //'''Builds the components for a lineplot from a dataset and displays sends them to the builder function'''
@@ -347,6 +413,10 @@ function buildCanvasXpress(xobj, yobj, styling, zobj=null){
     //'''Builds the canvasXpress plot'''
     sizewidth = sizeWindow()
     $('.canvascont').html("<canvas id='canvas' width='"+ ((sizewidth[1]/100)*60).toString() +"' height='"+ (sizewidth[0]-90).toString() +"' aspectRatio='1:1' responsive='true'></canvas>")
+    if (canvasX){
+        delete canvasX
+    }
+    console.log(xobj, yobj, zobj, styling)
     canvasX = new DUVALCanvasXpress("canvas", {
       y: yobj,
       x: xobj,
@@ -362,7 +432,6 @@ function buildCanvasXpress(xobj, yobj, styling, zobj=null){
 
 function typecheck(df, keys, type){
     //'''Checks what type of plot should be the standarddisplay'''
-
     switch (type){
         case "Boxplot":
             return boxplot(df ,keys, type)
@@ -376,6 +445,58 @@ function typecheck(df, keys, type){
     }
 
 }
+
+function reqkey(key, callBackFn){
+    /*'''
+    Requests the nominal values of a key from the dataset.
+    '''*/
+    $.ajax({
+    url: '/annotate/nominalkey',
+    data: {'key': JSON.stringify(key)},
+    success: function(result){
+        outhtml = ''
+        outhtml += "<div class='p-subst-group'><div class='p-subst-title'>"+key+"</div>"
+        keys = JSON.parse(result.keys)
+        for (subkey in keys){
+            var checked = ''
+            if (isEmpty(checkedsubset)){
+                checked = 'checked'
+            }
+            else{
+                if (key in checkedsubset){
+                    if (checkedsubset[key].indexOf(keys[subkey]) == -1){
+                        checked = 'checked'
+                    }
+                }
+                else{
+                    checked = 'checked'
+                }
+            }
+            outhtml += "<input type='checkbox' value='"+keys[subkey]+"' name='"+ key +"' "+checked+">"+keys[subkey]
+        }
+        outhtml += "</div>"
+        $('.p-subst').append(outhtml)
+        $('.p-subst-group').find("input[type='checkbox']").off('change')
+        $('.p-subst-group').find("input[type='checkbox']").on('change', function(){
+            if (!(checkedsubset[$(this).attr('name')])){
+                checkedsubset[$(this).attr('name')] = []
+            }
+            if ($(this).is(':checked')){
+                var popindex = checkedsubset[$(this).attr('name')].indexOf($(this).val());
+                if (popindex > -1) {
+                   checkedsubset[$(this).attr('name')].splice(popindex, 1);
+                }
+            }
+            else{
+                checkedsubset[$(this).attr('name')].push($(this).val())
+            }
+
+            console.log(checkedsubset)
+        })
+    }
+    });
+}
+
 
 function request(type, attr=null){
     //'''Sends and recieves AJAX requests'''
@@ -423,24 +544,53 @@ function multirequest(type, list=null){
     }
 }
 
-function updateSubset(samps, type){
+function updateSubset(samps, constraints, type){
     samps = JSON.stringify(samps)
+    constraints = JSON.stringify(constraints)
     var token = $('.token')[0].innerHTML
     $.ajax({
         method: 'POST',
         url: '/annotate/subset',
         data: {
             'subset': samps,
-            'subvar': JSON.stringify('something'),
+            'subvar': constraints,
             csrfmiddlewaretoken: token
         },
         traditional: true,
         success: function(result){
-            console.log('enter success')
             $('.d-table').html(result.datatable)
             resulting = result
             typecheck(result.df ,result.keys, type)
-            console.log('data send, response: ' + result)
+            $('.p-table').html('')
+            $('.p-table').html(result.pivottable)
+            $('.group-item').on('click', function(){
+                if ($(this).next().hasClass('cat-group')){
+                    $(this).next().toggle();
+                }
+            });
+        }
+    });
+}
+
+function saveSubset(samps, constraints, type){
+    samps = JSON.stringify(samps)
+    constraints = JSON.stringify(constraints)
+    subsettype = JSON.stringify(type)
+    var token = $('.token')[0].innerHTML
+
+    $.ajax({
+        method: 'POST',
+        url: '/annotate/browsersave',
+        data: {
+            'subset': samps,
+            'subvar': constraints,
+            'subsettype': subsettype,
+            csrfmiddlewaretoken: token
+        },
+        traditional: true,
+        success: function(result){
+            console.log(result)
+            download('data:text/'+type+','+result.filecontent, result.filename)
         }
     });
 }

@@ -19,5 +19,7 @@ urlpatterns = [
     url(r'^annotate/export', views.export, name='export'),
     url(r'^annotate/subset', views.subset, name='subset'),
     url(r'^annotate/pivot', views.pivot, name='pivot'),
+    url(r'^annotate/nominalkey', views.nominalkey, name='nominalkey'),
+    url(r'^annotate/browsersave', views.browsersave, name='browsersave'),
     url(r'^start$', views.tohome, name='back')
 ]

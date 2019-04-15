@@ -52,6 +52,26 @@
     color: black;
     margin-right: 10px;
     cursor: pointer;
+    position: relative;
+}
+
+.btn-context{
+    position: absolute;
+    top: 25px;
+    left: 30px;
+    background: white;
+    border: 1px solid #eeeeee;
+    display: none;
+}
+
+.btn-context .context{
+    padding: 5px 10px;
+    border: 1px solid #eee;
+    min-width: 200px;
+}
+
+.btn-context .context:hover{
+    background: #f1f1f1;
 }
 
 /** skeleton **/
@@ -75,6 +95,7 @@ body{
 .right{
     width: 80%;
     background-color: #b2c1c3;
+    padding-top: 15px;
 }
 
 .features, .samples{
@@ -99,13 +120,16 @@ body{
 
 .plot_opts{
     background-color: white;
-    min-height: 150px;
+    float: left;
+    width: 100%;
+    margin-top: 0px;
 }
 
 .visual_holder{
-    min-height:350px;
+    min-height:81vh;
     width: 100%;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 1);
+    float: left;
 }
 
 .visual-graph{
@@ -174,10 +198,12 @@ input[type="file"] {
     background: rgb(0, 135, 247);
     color: #fff;
     text-align: center;
-    padding: 5px 20px;
+    padding: 10px 20px;
     cursor: pointer;
     display: block;
     max-width: 200px;
+    float: left;
+    min-width: 150px;
 }
 
 table.dataframe{
@@ -250,8 +276,6 @@ table.dataframe td{
 
 .btn-opt {
     float: left;
-    min-height: 120px;
-    width: 120px;
     padding: 15px;
     border: 1px solid;
     margin-right: 15px;
@@ -322,12 +346,11 @@ table.dataframe td{
 .tablebox{
     float: right;
     width: 40%;
-    max-height: 75vh;
+    max-height: 80vh;
     overflow-y: scroll
 }
 
 .d-table{
-    overflow: scroll;
     width: 100%;
     float: left;
 }
@@ -343,6 +366,19 @@ table.dataframe td{
     float: left;
     width: 100%;
     padding: 15px 0 5px 0;
+}
+
+.cat-group > .group-bottom {
+    margin-top: 15px;
+}
+
+.cat-group > .group-bottom ~ .group-bottom{
+    margin-top: 0px;
+}
+
+.group-bottom {
+    float: left;
+    width: 100%;
 }
 
 .tablebox label, .filter-in{
@@ -486,6 +522,7 @@ table.dataframe td{
     width: 100%;
     cursor: pointer;
     background: rgba(255,255,255,0.5)
+    border-bottom: 1px dotted #b9b9b9;
 }
 
 .group-right {
@@ -499,3 +536,4 @@ table.dataframe td{
     float: left;
     width: 50%;
 }
+

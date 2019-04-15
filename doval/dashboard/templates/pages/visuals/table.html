@@ -6,7 +6,8 @@
 <!--{{ resource | safe }}-->
 <link rel="stylesheet" href="{% static 'css/canvasXpress-23.6.css' %}">
 <link rel="stylesheet" href="{% static 'css/jquery.modal.min.css' %}">
-<script src="{% static 'js/canvasXpress.min-23.6.js' %}"></script>
+<!--script src="{% static 'js/canvasXpress.min-23.6.js' %}"></script>-->
+<script src="{% static 'js/canvasnotmin.js' %}"></script>
 
 {% endblock %}
 
@@ -84,6 +85,15 @@
       <div class="rnd-smps">
           <label>Random selection: </label>
           <input type="text" class="rnd-input" value="0">
+      </div>
+      <div class="p-subst">
+      </div>
+      <div class="btn save-subset">Save subset as ..
+        <div class="btn-context">
+            <div class="context" value="tsv" >Tab seperated</div>
+            <div class="context" value="csv" >Comma seperated</div>
+            <div class="context" value="JSON" >JSON</div>
+        </div>
       </div>
   </div>
   <div class="results">
