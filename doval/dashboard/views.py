@@ -101,18 +101,10 @@ class FileViewing:
         else:
             return JsonResponse({'keys': selected, 'df': self.df.to_json(orient='split')})
 
-    def subsetView(self, samples, constraints):
-        if len(samples) > 0:
-            try:
-                samples = [int(s) for s in samples]
-            except:
-                print("Cannot convert index to integer")
-            finally:
-                self.df = self.df.set_index(self.df.columns[0]).loc[samples, :]
-                self.df = self.df.reset_index()
+    def general_subset(self, indexes, constraints):
+        self.df = dovalapi.utils().subset_full(dataframe=self.df, indexes=indexes, restrictions=constraints)
         pivot = ''
         if len(constraints) > 0:
-            self.df = dovalapi.utils.subset_partialselect(self.df, constraints)
             features = list(constraints.keys())
             for key in keys:
                 features.insert(0, key)
@@ -121,39 +113,8 @@ class FileViewing:
                 features.pop(0)
         return JsonResponse({'keys': keys, 'df': self.df.to_json(orient='split'), 'datatable': self.df.set_index(self.df.columns[0])[keys].to_html(), 'pivottable': pivot})
 
-    def subsetOnIndex(self, indexlist, constraints):
-        global samples
-        indexlist = [int(x) for x in indexlist]
-        samplelist = []
-        for i in sorted(indexlist):
-            samplelist.append(self.df[self.df.columns[0]][i])
-        samples = samplelist
-        return self.subsetView(samples=samplelist, constraints=constraints)
-
-    def subsetOnSamples(self, samplelist, constraints):
-        global samples
-        samples = samplelist
-        return self.subsetView(samples=samplelist, constraints=constraints)
-
-    def exportSubset(self, indexlist, constraints, type):
-        global samples
-        indexlist = [int(x) for x in indexlist]
-        samplelist = []
-        for i in sorted(indexlist):
-            samplelist.append(self.df[self.df.columns[0]][i])
-        samples = samplelist
-        if len(indexlist) > 0:
-            try:
-                samples = [int(s) for s in samplelist]
-            except:
-                print("Cannot convert index to integer")
-            finally:
-                self.df = self.df.set_index(self.df.columns[0]).loc[samplelist, :]
-                self.df = self.df.reset_index()
-
-
-        if len(constraints) > 0:
-            self.df = dovalapi.utils.subset_partialselect(self.df, constraints)
+    def exportSubset(self, indexes, constraints, type):
+        self.df = dovalapi.utils().subset_full(dataframe=self.df, indexes=indexes, restrictions=constraints)
         filename = selectfile['name'][6::]
         filecontent = ''
         if type == 'JSON':
@@ -178,6 +139,7 @@ class FileViewing:
             if val is np.nan:
                 values[i] = "NA"
         return values
+
 
 def tohome(request):
     '''
@@ -221,10 +183,10 @@ def subset(request):
     indexes = json.loads(request.POST['subset'])
     subvars = json.loads(request.POST['subvar'])
     print('subset fn', indexes, subvars)
+    samples = indexes
     print('sel', samples)
-    if len(indexes) == 0 and len(samples) > 0:
-        return fv.subsetOnSamples(samplelist=samples, constraints=subvars)
-    return fv.subsetOnIndex(indexlist=indexes, constraints=subvars)
+    return fv.general_subset(indexes, subvars)
+
 
 def browsersave(request):
     fv = FileViewing()
@@ -232,6 +194,7 @@ def browsersave(request):
     subvars = json.loads(request.POST['subvar'])
     subsettype = json.loads(request.POST['subsettype'])
     return fv.exportSubset(indexes, subvars, subsettype)
+
 
 def pivot(request):
     fv = FileViewing()
@@ -248,12 +211,19 @@ def pivot(request):
     else:
         return JsonResponse({'pivottable': '', 'pivotkey': []})
 
+
 def nominalkey(request):
     fv = FileViewing()
     key = json.loads(request.GET['key'])
     keys = fv.getNominalKey(key)
     print(keys)
     return JsonResponse({'keys': pd.Series(keys).to_json(orient='values')})
+
+
+def resetDF(request):
+    fv = FileViewing()
+    return fv.updateview(selected=keys, sample=[], table=True)
+
 
 def key_select(key):
     if key+'_cat' in keys:

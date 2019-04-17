@@ -86,15 +86,10 @@
           <label>Random selection: </label>
           <input type="text" class="rnd-input" value="0">
       </div>
+      <div class='pivotselect'>Filter on pivot:</div>
       <div class="p-subst">
       </div>
-      <div class="btn save-subset">Save subset as ..
-        <div class="btn-context">
-            <div class="context" value="tsv" >Tab seperated</div>
-            <div class="context" value="csv" >Comma seperated</div>
-            <div class="context" value="JSON" >JSON</div>
-        </div>
-      </div>
+
   </div>
   <div class="results">
       <div class="result-title">
@@ -102,7 +97,17 @@
       </div>
       <div id="select-result"></div>
   </div>
-  <a href="#" class="btn update-subset" rel="modal:close">Update and close</a><a href="#" rel="modal:close" class="btn">Back</a>
+  <div class="buttonbox">
+      <a href="#" class="btn update-subset" rel="modal:close">Update and close</a>
+      <div class="btn save-subset">Save subset as ..
+          <div class="btn-context">
+              <div class="context" value="tsv" >Tab seperated (*.tsv)</div>
+              <div class="context" value="csv" >Comma seperated (*.csv)</div>
+              <div class="context" value="JSON" >JSON (*.JSON)</div>
+          </div>
+      </div>
+      <a href="#" rel="modal:close" class="btn reset-sbst">Reset subset</a><a href="#" rel="modal:close" class="btn">Back</a>
+  </div>
 </div>
 <div id="ex3" class="modal pivot">
   <p>Pivot your dataset.</p>

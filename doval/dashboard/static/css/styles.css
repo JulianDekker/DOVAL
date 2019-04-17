@@ -67,11 +67,16 @@
 .btn-context .context{
     padding: 5px 10px;
     border: 1px solid #eee;
-    min-width: 200px;
+    min-width: 230px;
 }
 
 .btn-context .context:hover{
     background: #f1f1f1;
+}
+
+.buttonbox{
+    float: left;
+    width: 100%;
 }
 
 /** skeleton **/
@@ -110,6 +115,7 @@ body{
     max-height: 90vh;
     overflow-y: scroll;
     padding-bottom: 15px;
+    float: left;
 }
 
 .plot_opts, .visual_holder{
@@ -141,6 +147,8 @@ body{
     padding: 5px 15px;
     background-color: #484848;
     color: #ffff;
+    float: left;
+    width: 100%;
 }
 
 /** Sample box, features box **/
@@ -288,12 +296,12 @@ table.dataframe td{
 }
 
 .update-vis{
-    width: 100%;
     padding: 5px 10px;
     background: grey;
     color: white;
     text-align: center;
     cursor: pointer;
+    float: right;
 }
 
 .row input{
@@ -406,7 +414,8 @@ table.dataframe td{
 }
 
 .selectionvis{
-    width: 100%;
+    width: calc(100% - 15px);
+    margin-right: 15px;
     min-height: 50px;
     background: #eeeeee;
     border: 1px solid #e0e0e0;
@@ -428,9 +437,19 @@ table.dataframe td{
     overflow-y: scroll;
 }
 
-#select-result p{
+#select-result .smp-idx{
     border-bottom: 1px solid #eeeeee;
     padding: 0px 15px;
+}
+
+#select-result .smp-idx:hover{
+    background: #d6d6d6;
+}
+
+span.remove {
+    float: right;
+    color: #c70000;
+    cursor: pointer;
 }
 
 .results{
@@ -456,6 +475,55 @@ table.dataframe td{
 
 .sbst-left-title{
     width: 100%;
+}
+
+.rnd-smps {
+    float: left;
+    width: 100%;
+    padding: 15px 15px 15px 0;
+}
+
+.rnd-smps label{
+    float: left;
+    width: 30%;
+    padding: 5px 10px 5px 0px;
+}
+
+.rnd-smps .rnd-input {
+    float: left;
+    width: 70%;
+    padding: 5px 10px;
+}
+
+.p-subst-group {
+    float: left;
+    width: 100%;
+    border-bottom: 1px solid #eeeeee;
+}
+
+/*.p-subst-group input {
+    margin: 0 10px 0 30px;
+}*/
+
+.checkgroup{
+    width: 70%;
+    float: left;
+    padding: 15px 0;
+}
+
+.checkpair{
+    float: left;
+    width: 30%;
+}
+
+.checkpair input{
+    margin-right: 10px;
+}
+
+.p-subst-title {
+    float: left;
+    padding: 15px 0;
+    width: 30%;
 }
 
 .potential-text-on-selection{

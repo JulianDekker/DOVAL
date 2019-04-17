@@ -21,5 +21,6 @@ urlpatterns = [
     url(r'^annotate/pivot', views.pivot, name='pivot'),
     url(r'^annotate/nominalkey', views.nominalkey, name='nominalkey'),
     url(r'^annotate/browsersave', views.browsersave, name='browsersave'),
+    url(r'^annotate/resetdataset', views.resetDF, name='resetdataset'),
     url(r'^start$', views.tohome, name='back')
 ]

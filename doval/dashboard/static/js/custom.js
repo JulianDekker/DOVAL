@@ -85,30 +85,58 @@ $( document ).ready(function() {
 
     $('.subst-btn').on('click', function(){
         //let selected = []
-        subset = []
-        df = JSON.parse(resulting.df)
-        visdatasize(df.index.length)
-        $('.samp-n').html(df.index.length)
-        $( ".selectionvis" ).selectable({
-          stop: function() {
-                subset = [];
-                $('#select-result').empty()
-                $( ".ui-selected", this ).each(function() {
-                  var index = $(this ).attr( 'value' );
-                  subset.push(index);
-                  $('.resultlen').html(subset.length)
-                });
-                for (i=0; i<subset.length; i++){
-                    $('#select-result').append('<p>'+df.data[subset[i]][0]+'</p>')
+        if (!(isEmpty(resulting))){
+
+            df = JSON.parse(resulting.df)
+            visdatasize(df.index.length)
+            $('#select-result').empty()
+            for (i=0; i<df.index.length; i++){
+                $('#select-result').append("<div class='smp-idx'>"+df.data[i][0]+"<span class='remove' value='"+i+"'>x</span></div>")
+            }
+            $('.resultlen').html(df.index.length)
+            subset = []
+
+            $('.smp-idx .remove').off('click')
+            $('.smp-idx .remove').on('click', function(){
+                subset = df.index
+                var idx = $(this).attr('value')
+                subset.splice(binarySearch(subset, 0, subset.length -1, parseInt(idx)), 1)
+
+                $(this).parent().remove()
+                $('.bar[value='+idx+']').toggleClass('ui-selected')
+                $('.resultlen').html(subset.length)
+            })
+
+            $('.samp-n').html(df.index.length)
+            $( ".selectionvis" ).selectable({
+              stop: function() {
+                    subset = [];
+                    $('#select-result').empty()
+                    $( ".ui-selected", this ).each(function() {
+                      var index = $(this ).attr( 'value' );
+                      subset.push(index);
+                      $('.resultlen').html(subset.length)
+                    });
+                    for (i=0; i<subset.length; i++){
+                        $('#select-result').append("<div class='smp-idx'>"+df.data[subset[i]][0]+"<span class='remove' value='"+subset[i]+"'>x</span></div>")
+                    }
+                    $('.smp-idx .remove').off('click')
+                    $('.smp-idx .remove').on('click', function(){
+                        var idx = $(this).attr('value')
+                        subset.splice(binarySearch(subset, 0, subset.length -1, parseInt(idx)), 1)
+                        $(this).parent().remove()
+                        $('.bar[value='+idx+']').toggleClass('ui-selected')
+                        $('.resultlen').html(subset.length)
+                        console.log(subset)
+                    })
+                  }
+            });
+            if (objectArrayValNotEmpty(extraOptions, 'groupingFactors')){
+                var outhtml = ''
+                $('.p-subst').html('')
+                for (i in extraOptions['groupingFactors']){
+                    reqkey(extraOptions['groupingFactors'][i])
                 }
-                //console.log(selected)
-              }
-        });
-        if (extraOptions['groupingFactors'].length > 0){
-            var outhtml = ''
-            $('.p-subst').html('')
-            for (i in extraOptions['groupingFactors']){
-                reqkey(extraOptions['groupingFactors'][i])
             }
         }
     })
@@ -138,7 +166,7 @@ $( document ).ready(function() {
             })
         }
         if (subset || (constraints.length > 0)){
-            updateSubset(subset, constraints, type)
+            updateSubset(matchRelativeID(subset), constraints, type)
         }
     })
 
@@ -148,6 +176,10 @@ $( document ).ready(function() {
 
     $('.save-subset .btn-context').mouseleave(function(){
         $('.save-subset .btn-context').hide()
+    })
+
+    $('.reset-sbst').on('click', function(){
+        resetDF(type)
     })
 
     $('.context').click(function(){
@@ -165,7 +197,7 @@ $( document ).ready(function() {
             })
         }
         if (subset || (constraints.length > 0)){
-            saveSubset(subset, constraints, savetype)
+            saveSubset(matchRelativeID(subset), constraints, savetype)
         }
     })
 
@@ -198,10 +230,18 @@ $( document ).ready(function() {
         }
         selected = selected.sort()
         for (i=0; i<selected.length; i++){
-            $('#select-result').append('<p>'+df.data[selected[i]][0]+'</p>')
+            $('#select-result').append("<div class='smp-idx'>"+df.data[selected[i]][0]+"<span class='remove' value='"+selected[i]+"'>x</span></div>")
             $('.selectionvis').find('.bar[value='+selected[i]+']').addClass('ui-selected')
         }
-
+        $('.smp-idx .remove').off('click')
+        $('.smp-idx .remove').on('click', function(){
+            var idx = $(this).attr('value')
+            console.log(selected)
+            selected.splice(binarySearch(selected, 0, selected.length -1, parseInt(idx)), 1)
+            $(this).parent().remove()
+            $('.bar[value='+idx+']').toggleClass('ui-selected')
+            $('.resultlen').html(selected.length)
+        })
         return selected
     }
 
@@ -229,6 +269,75 @@ function isEmpty(obj) {
             return false;
     }
     return true;
+}
+
+function objectIndexExists(obj, index){
+     if (key in obj){
+        return true
+     }
+     return false
+}
+
+function objectArrayValExists(obj, key, arrval){
+    if (key in obj){
+        if (obj[key].indexOf(arrval) > -1){
+            return true
+        }
+     }
+     return false
+}
+
+function objectArrayValNotEmpty(obj, key){
+    if (key in obj){
+        try{
+            if (obj[key].length > 0){
+                return true
+            }
+        }
+        catch{
+            return false
+        }
+     }
+     return false
+}
+
+function binarySearch(arr, l, r, x){
+    /**
+        Searches for x in an array using the binary search algorithm.
+        Search a sorted array by repeatedly dividing the search interval in half. Begin with an interval covering the
+        whole array. If the value of the search key is less than the item in the middle of the interval,
+        narrow the interval to the lower half. Otherwise narrow it to the upper half.
+        Repeatedly check until the value is found or the interval is empty.
+    **/
+    if (r >= l){
+        mid = Math.round(l + (r - l)/2)
+        if (arr[mid] == x){
+            return mid
+        }
+        else if(arr[mid] > x){
+            return binarySearch(arr, l, mid-1, x)
+        }
+        else{
+            return binarySearch(arr, mid + 1, r, x)
+        }
+    }
+    else{
+        return -1
+    }
+}
+
+function matchRelativeID(arr){
+    matches = []
+    df = JSON.parse(resulting.df)
+    try{
+        for (i=0;i<arr.length;i++){
+            matches.push(df.data[arr[i]][0])
+        }
+    }
+    catch{
+        return
+    }
+    return matches
 }
 
 function boxplot(df, keys, type){
@@ -416,7 +525,6 @@ function buildCanvasXpress(xobj, yobj, styling, zobj=null){
     if (canvasX){
         delete canvasX
     }
-    console.log(xobj, yobj, zobj, styling)
     canvasX = new DUVALCanvasXpress("canvas", {
       y: yobj,
       x: xobj,
@@ -454,8 +562,8 @@ function reqkey(key, callBackFn){
     url: '/annotate/nominalkey',
     data: {'key': JSON.stringify(key)},
     success: function(result){
-        outhtml = ''
-        outhtml += "<div class='p-subst-group'><div class='p-subst-title'>"+key+"</div>"
+        outhtml = ""
+        outhtml += "<div class='p-subst-group'><div class='p-subst-title'>"+key+"</div><div class='checkgroup'>"
         keys = JSON.parse(result.keys)
         for (subkey in keys){
             var checked = ''
@@ -472,9 +580,9 @@ function reqkey(key, callBackFn){
                     checked = 'checked'
                 }
             }
-            outhtml += "<input type='checkbox' value='"+keys[subkey]+"' name='"+ key +"' "+checked+">"+keys[subkey]
+            outhtml += "<div class='checkpair'><input type='checkbox' value='"+keys[subkey]+"' name='"+ key +"' "+checked+">"+keys[subkey]+'</div>'
         }
-        outhtml += "</div>"
+        outhtml += "</div></div>"
         $('.p-subst').append(outhtml)
         $('.p-subst-group').find("input[type='checkbox']").off('change')
         $('.p-subst-group').find("input[type='checkbox']").on('change', function(){
@@ -595,8 +703,25 @@ function saveSubset(samps, constraints, type){
     });
 }
 
-function pivotTable(data, type){
+function resetDF(type){
+    $.ajax({
+        url: '/annotate/resetdataset',
+        traditional: true,
+        success: function(result){
+            $('.d-table').html(result.datatable)
+            resulting = result
+            typecheck(result.df ,result.keys, type)
+            $('.p-table').html('')
+            $('.p-table').html(result.pivottable)
+            $('.group-item').on('click', function(){
+                if ($(this).next().hasClass('cat-group')){
+                    $(this).next().toggle();
+                }
+            });
+    }});
+}
 
+function pivotTable(data, type){
     $.ajax({
         url: '/annotate/pivot',
         data: {'data': JSON.stringify(data)},
@@ -689,6 +814,7 @@ function visdatasize(size){
             $('.selectionvis').append(`<div class='bar' value=${i}></div>`)
         }
         $('.bar').css({'width':selectionwidth+'px', 'height':'50px'})
+        $('.bar').toggleClass('ui-selected')
     })
 
 }
