@@ -17,6 +17,8 @@ import numpy as np
 selectfile = {}
 keys = []
 samples = []
+pivot = []
+reffv = None
 
 class DragAndDropUploadView(View):
     '''
@@ -85,8 +87,13 @@ class FileViewing:
         if selectfile:
             self.sep = dovalapi.utils.check_sep(settings.MEDIA_ROOT[0:-6] + selectfile['url'])
             self.df = pd.read_csv(settings.MEDIA_ROOT[0:-6] + selectfile['url'], sep=self.sep)
+            #for i in self.df.columns:
+            #    print(self.df[i].dtype)
+            #    if str(self.df[i].dtype).startswith('int') or str(self.df[i].dtype).startswith('float'):
+            #        self.df = dovalapi.utils.categorise_intdata(self.df, i)
 
-    def updateview(self, selected=None, sample=None, table=False):
+    def updateview(self, selected=None, sample=None, table=False, pivot=None):
+        global keys
         if len(sample) > 0:
             try:
                 sample = [int(s) for s in sample]
@@ -96,14 +103,28 @@ class FileViewing:
                 self.df = self.df.set_index(self.df.columns[0]).loc[sample, :]
                 self.df = self.df.reset_index()
         print('features in: ', selected)
+        if pivot:
+            pivottable = ''
+            if len(pivot) > 0:
+                for key in keys:
+                    pivot.insert(0, key)
+                    title = '<p>{}</p>'.format(key)
+                    pivottable += title + self.generatePivotTable(pivot)
+                    pivot.pop(0)
+        else:
+            pivottable = ''
         if table:
-            return JsonResponse({'keys': selected, 'df': self.df.to_json(orient='split'), 'datatable': self.df.set_index(self.df.columns[0])[selected].to_html()})
+            return JsonResponse({'keys': selected,
+                                 'df': self.df.to_json(orient='split'),
+                                 'datatable': self.df.set_index(self.df.columns[0])[selected].to_html(),
+                                 'pivottable': pivottable})
         else:
             return JsonResponse({'keys': selected, 'df': self.df.to_json(orient='split')})
 
     def general_subset(self, indexes, constraints):
-        self.df = dovalapi.utils().subset_full(dataframe=self.df, indexes=indexes, restrictions=constraints)
+        subsetdf = dovalapi.utils().subset_full(dataframe=self.df, indexes=indexes, restrictions=constraints)
         pivot = ''
+        features = []
         if len(constraints) > 0:
             features = list(constraints.keys())
             for key in keys:
@@ -111,25 +132,28 @@ class FileViewing:
                 title = '<p>{}</p>'.format(key)
                 pivot += title+self.generatePivotTable(features)
                 features.pop(0)
-        return JsonResponse({'keys': keys, 'df': self.df.to_json(orient='split'), 'datatable': self.df.set_index(self.df.columns[0])[keys].to_html(), 'pivottable': pivot})
+        return JsonResponse({'keys': keys, 'df': subsetdf.to_json(orient='split'), 'datatable': subsetdf.set_index(subsetdf.columns[0])[keys+features].to_html(), 'pivottable': pivot})
 
     def exportSubset(self, indexes, constraints, type):
-        self.df = dovalapi.utils().subset_full(dataframe=self.df, indexes=indexes, restrictions=constraints)
+        subsetdf = dovalapi.utils().subset_full(dataframe=self.df, indexes=indexes, restrictions=constraints)
         filename = selectfile['name'][6::]
         filecontent = ''
         if type == 'JSON':
             filename += '_duvalsave.JSON'
-            filecontent = self.df.to_json(orient='split')
+            filecontent = subsetdf.to_json(orient='split')
         elif type == 'csv':
             filename += '_duvalsave.csv'
-            filecontent = self.df.to_csv(index=False)
+            filecontent = subsetdf.to_csv(index=False)
         elif type == 'tsv':
             filename += '_duvalsave.tsv'
-            filecontent = self.df.to_csv(sep='\t', index=False)
+            filecontent = subsetdf.to_csv(sep='\t', index=False)
         return JsonResponse({'filecontent': filecontent, 'filename': filename})
 
     def generatePivotTable(self, list):
+        global samples
         dovutils = dovalapi.utils()
+        print('smps', samples)
+        self.df = dovutils.subset_full(self.df, samples, {})
         pivottable = dovutils.hierarchical_pivottable(self.df, list)
         return pivottable
 
@@ -140,6 +164,8 @@ class FileViewing:
                 values[i] = "NA"
         return values
 
+    def getTable(self, key, features):
+        return self.df.set_index(self.df.columns[0])[key+features].to_html()
 
 def tohome(request):
     '''
@@ -157,7 +183,9 @@ def tohome(request):
 
 
 def multiupdate(request):
-    fv = FileViewing()
+    global reffv
+    reffv = FileViewing()
+    fv = reffv
     global keys
     global samples
     list = json.loads(request.GET['values'])
@@ -179,17 +207,24 @@ def export(request):
 
 
 def subset(request):
-    fv = FileViewing()
+    global samples, reffv, constraints
+    if reffv:
+        fv = reffv
+    else:
+        fv = FileViewing()
     indexes = json.loads(request.POST['subset'])
     subvars = json.loads(request.POST['subvar'])
-    print('subset fn', indexes, subvars)
     samples = indexes
-    print('sel', samples)
+    constraints = subvars
     return fv.general_subset(indexes, subvars)
 
 
 def browsersave(request):
-    fv = FileViewing()
+    global reffv
+    if reffv:
+        fv = reffv
+    else:
+        fv = FileViewing()
     indexes = json.loads(request.POST['subset'])
     subvars = json.loads(request.POST['subvar'])
     subsettype = json.loads(request.POST['subsettype'])
@@ -197,32 +232,43 @@ def browsersave(request):
 
 
 def pivot(request):
-    fv = FileViewing()
+    global reffv, pivot
+    if reffv:
+        fv = reffv
+    else:
+        fv = FileViewing()
     table = ''
     pivotPrio = json.loads(request.GET['data'])
     pivotPrio = list(filter(lambda x: not (x == 'None'), pivotPrio))
+    pivot = pivotPrio
     if len(pivotPrio) > 0:
         for key in keys:
             pivotPrio.insert(0, key)
             title = '<p>{}</p>'.format(key)
             table += title+fv.generatePivotTable(pivotPrio)
             pivotPrio.pop(0)
-        return JsonResponse({'pivottable': table, 'pivotkey': pivotPrio})
+        return JsonResponse({'pivottable': table, 'pivotkey': pivotPrio, 'datatable': fv.getTable(keys, pivotPrio)})
     else:
-        return JsonResponse({'pivottable': '', 'pivotkey': []})
+        return JsonResponse({'pivottable': '', 'pivotkey': [], 'datatable': ''})
 
 
 def nominalkey(request):
-    fv = FileViewing()
+    global samples, reffv
+    if reffv:
+        fv = reffv
+    else:
+        fv = FileViewing()
     key = json.loads(request.GET['key'])
     keys = fv.getNominalKey(key)
-    print(keys)
+    print(keys, samples)
     return JsonResponse({'keys': pd.Series(keys).to_json(orient='values')})
 
 
 def resetDF(request):
-    fv = FileViewing()
-    return fv.updateview(selected=keys, sample=[], table=True)
+    global reffv, samples, pivot, keys
+    reffv = FileViewing()
+    samples = []
+    return reffv.updateview(selected=keys, sample=samples, table=True, pivot=pivot)
 
 
 def key_select(key):

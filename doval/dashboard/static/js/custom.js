@@ -180,6 +180,7 @@ $( document ).ready(function() {
 
     $('.reset-sbst').on('click', function(){
         resetDF(type)
+        $('.checkpair input').checked = true
     })
 
     $('.context').click(function(){
@@ -697,7 +698,6 @@ function saveSubset(samps, constraints, type){
         },
         traditional: true,
         success: function(result){
-            console.log(result)
             download('data:text/'+type+','+result.filecontent, result.filename)
         }
     });
@@ -718,6 +718,7 @@ function resetDF(type){
                     $(this).next().toggle();
                 }
             });
+            console.log(result)
     }});
 }
 
@@ -745,8 +746,7 @@ function pivotTable(data, type){
                     $(this).next().toggle();
                 }
             });
-
-            console.log(extraOptions)
+            $('.d-table').html(result.datatable);
         }
     });
 }
@@ -842,9 +842,9 @@ class DUVALCanvasXpress extends CanvasXpress{
     }(this);
 
   consolelogthis = function (){
-    console.log(console.log(this.groupingFactors))
-    //this.groupingFactors = ['Class']
-    //this.groupSamples(this.groupingFactors, false, false, false, true)
-    //this.toggleAttribute('xAxisShow')
+        console.log(console.log(this.groupingFactors))
+        //this.groupingFactors = ['Class']
+        //this.groupSamples(this.groupingFactors, false, false, false, true)
+        //this.toggleAttribute('xAxisShow')
   }
 }
