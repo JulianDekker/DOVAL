@@ -1,11 +1,9 @@
 import os
-from os.path import join
-from django.shortcuts import render, render_to_response, redirect
+from django.shortcuts import render, redirect
 from django.conf import settings
-from django.http import JsonResponse, HttpResponse, FileResponse
+from django.http import JsonResponse
 from django.views import View
 import json
-#from bokeh.layouts import layout
 import dovalapi
 
 from .forms import FileForm
@@ -17,7 +15,7 @@ import numpy as np
 selectfile = {}
 keys = []
 samples = []
-pivot = []
+pivotvars = []
 reffv = None
 
 class DragAndDropUploadView(View):
@@ -27,7 +25,7 @@ class DragAndDropUploadView(View):
     def get(self, request):
         form = FileForm()
 
-        #if len(file.objects.all()) > 0:
+        #if len(file.objects.all()) > 0: \\TODO fix db clear
         #    clear_database()
         return render(self.request, 'pages/localupload/index.html', {'uploadform': form})
 
@@ -62,21 +60,6 @@ class SelectedFileView(View):
                   }
         return render(self.request, 'pages/visuals/table.html', params)
 
-    def keyrequest(self, key):
-        print(key, list)
-        print('keyreq')
-        fv = FileViewing()
-        if key is not None:
-            selected = key_select(key)
-            return fv.updateview(selected=selected, sample=samples)
-
-    def samprequest(self, sample):
-        print('samplereq')
-        fv = FileViewing()
-        if sample is not None:
-            samp = samp_select(sample)
-            return fv.updateview(selected=keys, sample=samp)
-
     def post(self, request):
         pass
 
@@ -92,7 +75,7 @@ class FileViewing:
             #    if str(self.df[i].dtype).startswith('int') or str(self.df[i].dtype).startswith('float'):
             #        self.df = dovalapi.utils.categorise_intdata(self.df, i)
 
-    def updateview(self, selected=None, sample=None, table=False, pivot=None):
+    def updateview(self, selected=None, sample=None, table=False, pivots=None):
         global keys
         if len(sample) > 0:
             try:
@@ -103,14 +86,14 @@ class FileViewing:
                 self.df = self.df.set_index(self.df.columns[0]).loc[sample, :]
                 self.df = self.df.reset_index()
         print('features in: ', selected)
-        if pivot:
+        if pivots:
             pivottable = ''
-            if len(pivot) > 0:
+            if len(pivots) > 0:
                 for key in keys:
-                    pivot.insert(0, key)
+                    pivots.insert(0, key)
                     title = '<p>{}</p>'.format(key)
-                    pivottable += title + self.generatePivotTable(pivot)
-                    pivot.pop(0)
+                    pivottable += title + self.generatePivotTable(pivots)
+                    pivots.pop(0)
         else:
             pivottable = ''
         if table:
@@ -136,6 +119,7 @@ class FileViewing:
 
     def exportSubset(self, indexes, constraints, type):
         subsetdf = dovalapi.utils().subset_full(dataframe=self.df, indexes=indexes, restrictions=constraints)
+        print('aftersbst', subsetdf)
         filename = selectfile['name'][6::]
         filecontent = ''
         if type == 'JSON':
@@ -152,9 +136,8 @@ class FileViewing:
     def generatePivotTable(self, list):
         global samples
         dovutils = dovalapi.utils()
-        print('smps', samples)
         self.df = dovutils.subset_full(self.df, samples, {})
-        pivottable = dovutils.hierarchical_pivottable(self.df, list)
+        pivottable = dovutils.hierarchical_pivottable(self.df, list, notebookout=False)
         return pivottable
 
     def getNominalKey(self, key):
@@ -196,18 +179,8 @@ def multiupdate(request):
         return fv.updateview(selected=list, sample=samples, table=True)
 
 
-def export(request):
-    """
-    Recieves json files from ajax call to export.
-    :param request:
-    :return:
-    """
-    file = json.loads(request.POST['expJSON'])
-    return JsonResponse({'result': 'succes'})
-
-
 def subset(request):
-    global samples, reffv, constraints
+    global samples, reffv
     if reffv:
         fv = reffv
     else:
@@ -215,7 +188,6 @@ def subset(request):
     indexes = json.loads(request.POST['subset'])
     subvars = json.loads(request.POST['subvar'])
     samples = indexes
-    constraints = subvars
     return fv.general_subset(indexes, subvars)
 
 
@@ -232,15 +204,15 @@ def browsersave(request):
 
 
 def pivot(request):
-    global reffv, pivot
+    global reffv, pivotvars
     if reffv:
         fv = reffv
     else:
         fv = FileViewing()
     table = ''
     pivotPrio = json.loads(request.GET['data'])
-    pivotPrio = list(filter(lambda x: not (x == 'None'), pivotPrio))
-    pivot = pivotPrio
+    pivotPrio = list(set(filter(lambda x: not (x == 'None'), pivotPrio)))
+    pivotvars = pivotPrio
     if len(pivotPrio) > 0:
         for key in keys:
             pivotPrio.insert(0, key)
@@ -260,15 +232,14 @@ def nominalkey(request):
         fv = FileViewing()
     key = json.loads(request.GET['key'])
     keys = fv.getNominalKey(key)
-    print(keys, samples)
     return JsonResponse({'keys': pd.Series(keys).to_json(orient='values')})
 
 
 def resetDF(request):
-    global reffv, samples, pivot, keys
+    global reffv, samples, pivotvars, keys
     reffv = FileViewing()
     samples = []
-    return reffv.updateview(selected=keys, sample=samples, table=True, pivot=pivot)
+    return reffv.updateview(selected=keys, sample=samples, table=True, pivots=pivotvars)
 
 
 def key_select(key):

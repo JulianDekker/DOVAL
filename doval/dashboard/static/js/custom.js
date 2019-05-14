@@ -12,36 +12,7 @@ $( document ).ready(function() {
 
     $('.features li a, .samples li a').on('click', function(e){
         e.preventDefault();
-        var clicked_element = $(this)
-        if (!(clicked_element.hasClass('in'))){
-            clicklist.push(clicked_element);
-            clicked_element.addClass('in')
-        }
-        else{
-            clicked_element.find('.inline-marker').html()
-            clicked_element.find('.inline-marker').removeClass('visible')
-            clicklist.pop(clicked_element)
-            clicked_element.removeClass('in')
-        }
-        i = 0
-        for (element in clicklist){
-            element = clicklist[element];
-            if (!(i == 0)){
-                if (element.hasClass('in')){
-                    element.find('.inline-marker').addClass('visible');
-                    element.find('.inline-marker').html(i);
-                }
-            }
-            i++;
-        }
-        if (clicked_element.hasClass('msr')){
-            if ($('.active').length == 1){
-                clicked_element.toggleClass('active')
-            }
-        }
-        else{
-            clicked_element.toggleClass('active')
-        }
+        $(this).toggleClass('active')
     });
 
     $('.btn-opt').on('click', function(){
@@ -521,11 +492,13 @@ function standartstyling(len){
 
 function buildCanvasXpress(xobj, yobj, styling, zobj=null){
     //'''Builds the canvasXpress plot'''
+
     sizewidth = sizeWindow()
     $('.canvascont').html("<canvas id='canvas' width='"+ ((sizewidth[1]/100)*60).toString() +"' height='"+ (sizewidth[0]-90).toString() +"' aspectRatio='1:1' responsive='true'></canvas>")
     if (canvasX){
         delete canvasX
     }
+    console.log(yobj, xobj)
     canvasX = new DUVALCanvasXpress("canvas", {
       y: yobj,
       x: xobj,
@@ -667,6 +640,7 @@ function updateSubset(samps, constraints, type){
         },
         traditional: true,
         success: function(result){
+            console.log(result)
             $('.d-table').html(result.datatable)
             resulting = result
             typecheck(result.df ,result.keys, type)
@@ -718,7 +692,6 @@ function resetDF(type){
                     $(this).next().toggle();
                 }
             });
-            console.log(result)
     }});
 }
 
@@ -744,37 +717,21 @@ function pivotTable(data, type){
             $('.group-item').on('click', function(){
                 if ($(this).next().hasClass('cat-group')){
                     $(this).next().toggle();
+                    $(this).toggleClass('collapsed')
                 }
             });
+            $('.group-item').each(function(){
+                if ($(this).next().children().length > 2){
+                    console.log($(this).addClass('collapsable'))
+                }
+            })
             $('.d-table').html(result.datatable);
         }
     });
 }
 
-function exportJSON(json){
-    if (!(json == null)){
-        vars = JSON.stringify(json)
-        var token = $('.token')[0].innerHTML
-        $.ajax({
-            method: 'POST',
-            url: '/annotate/export',
-            data: {
-                'expJSON': vars,
-                csrfmiddlewaretoken: token
-            },
-            traditional: true,
-            success: function(result){
-                console.log('data send, response: ' + result.result)
-            }
-        });
-    }
-    else{
-        throw 'error in tableupdate function. vars or samps does not exist or is null.'
-    }
-}
-
 function sizeWindow(){
-    //'''Resizes graph amd container of graph'''
+    //'''Resizes graph and container of graph'''
     optsHeight = $('.plot_opts').outerHeight()
     docHeight = $(document).height()
     btnHeight = $('.btn-upload').outerHeight()
